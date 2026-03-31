@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PsychEdge — Edexcel A-Level Psychology</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0d0c0f;
+  --paper: #f6f3ed;
+  --cream: #ede8dd;
+  --soft: #e2ddd4;
+  --muted: #7c7669;
+  --accent: #c03b10;
+  --accent-dim: rgba(192,59,16,0.1);
+  --blue: #1f527a;
+  --blue-dim: rgba(31,82,122,0.08);
+  --gold: #b5862c;
+  --green: #2a6b4a;
+  --green-dim: rgba(42,107,74,0.1);
+  --white: #ffffff;
+  --card: #ffffff;
+  --border: #ddd8cd;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'Outfit',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;}
+
+/* PAGE SYSTEM */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ═══════════════ HOMEPAGE ═══════════════ */
+.hp-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(246,243,237,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--soft);}
+.hp-logo{font-family:'Lora',serif;font-size:1.3rem;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:-.02em;cursor:pointer;}
+.hp-logo span{color:var(--accent);}
+.hp-nav-links{display:flex;gap:2rem;list-style:none;}
+.hp-nav-links a{font-size:.82rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:.04em;text-transform:uppercase;transition:color .2s;cursor:pointer;}
+.hp-nav-links a:hover{color:var(--accent);}
+.hp-nav-cta{background:var(--ink);color:white!important;padding:.5rem 1.2rem;border-radius:2px;transition:background .2s!important;}
+.hp-nav-cta:hover{background:var(--accent)!important;}
+
+.hp-hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:72px;}
+.hp-hero-left{display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem 5rem 5rem;}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:.32rem .75rem;border-radius:2px;margin-bottom:1.8rem;width:fit-content;animation:fadeUp .5s ease both;}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hp-h1{font-family:'Lora',serif;font-size:clamp(2.6rem,4.5vw,4rem);font-weight:700;line-height:1.08;letter-spacing:-.02em;animation:fadeUp .5s .1s ease both;}
+.hp-h1 em{font-style:italic;color:var(--accent);}
+.hp-hero-sub{margin-top:1.4rem;font-size:1rem;line-height:1.75;color:var(--muted);max-width:420px;font-weight:300;animation:fadeUp .5s .2s ease both;}
+.hp-hero-actions{display:flex;gap:1rem;margin-top:2.2rem;animation:fadeUp .5s .3s ease both;}
+.btn-primary{background:var(--accent);color:white;border:none;padding:.85rem 1.8rem;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;border-radius:2px;letter-spacing:.02em;transition:all .2s;text-decoration:none;display:inline-block;}
+.btn-primary:hover{background:#a33508;transform:translateY(-1px);box-shadow:0 4px 18px rgba(193,68,14,.28);}
+.btn-secondary{background:transparent;color:var(--ink);border:1.5px solid var(--ink);padding:.85rem 1.8rem;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer;border-radius:2px;transition:all .2s;}
+.btn-secondary:hover{background:var(--ink);color:var(--paper);}
+.hp-hero-stats{display:flex;gap:2.5rem;margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--soft);animation:fadeUp .5s .4s ease both;}
+.stat-num{font-family:'Lora',serif;font-size:1.8rem;font-weight:700;}
+.stat-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem;}
+
+.hp-hero-right{background:var(--ink);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.hp-hero-right::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 70%,rgba(192,59,16,.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(31,82,122,.15) 0%,transparent 50%);}
+.hero-svg{width:88%;max-width:400px;animation:floatAnim 6s ease-in-out infinite;position:relative;z-index:1;}
+@keyframes floatAnim{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+.marquee-bar{background:var(--accent);padding:.75rem 0;overflow:hidden;white-space:nowrap;}
+.marquee-track{display:inline-flex;gap:2.5rem;animation:marquee 28s linear infinite;}
+.marquee-track span{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.8);}
+.marquee-track .dot{color:rgba(255,255,255,.3);}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+.hp-topics{padding:5rem;background:var(--cream);}
+.hp-section-tag{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;}
+.hp-section-h{font-family:'Lora',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;letter-spacing:-.02em;margin-bottom:.5rem;}
+.hp-section-h em{font-style:italic;color:var(--accent);}
+.hp-section-sub{color:var(--muted);font-size:.95rem;line-height:1.7;max-width:500px;font-weight:300;margin-bottom:2.5rem;}
+.topics-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;}
+.topics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5px;background:var(--soft);border:1.5px solid var(--soft);}
+.topic-card{background:var(--card);padding:1.8rem;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block;}
+.topic-card::after{content:'';position:absolute;bottom:0;left:0;height:3px;width:0;background:var(--accent);transition:width .3s ease;}
+.topic-card:hover::after{width:100%;}
+.topic-card:hover{background:#fefcf8;}
+.topic-num{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.1em;margin-bottom:.8rem;}
+.topic-icon{font-size:1.8rem;margin-bottom:.8rem;display:block;}
+.topic-title{font-family:'Lora',serif;font-size:1.1rem;font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:.5rem;}
+.topic-desc{font-size:.8rem;color:var(--muted);line-height:1.6;}
+.topic-pill{display:inline-block;margin-top:1rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid currentColor;padding:.22rem .55rem;border-radius:2px;}
+.live-badge{display:inline-block;background:var(--accent);color:white;font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .45rem;border-radius:2px;margin-left:.5rem;vertical-align:middle;}
+
+.hp-split{display:grid;grid-template-columns:1fr 1fr;}
+.hp-split-left{padding:5rem 4rem 5rem 5rem;display:flex;flex-direction:column;justify-content:center;}
+.hp-split-right{background:var(--ink);padding:4rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;border-left:0;}
+.hp-split-right::before{content:'';position:absolute;top:-40%;right:-20%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(192,59,16,.2) 0%,transparent 70%);}
+.example-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:1.7rem;position:relative;z-index:1;}
+.example-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.9rem;}
+.example-q{font-family:'Lora',serif;font-size:.97rem;font-style:italic;color:rgba(255,255,255,.88);line-height:1.6;margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:1px solid rgba(255,255,255,.08);}
+.example-steps{list-style:none;}
+.example-steps li{display:flex;gap:.9rem;align-items:flex-start;margin-bottom:.75rem;font-size:.83rem;color:rgba(255,255,255,.65);line-height:1.5;}
+.step-dot{width:20px;height:20px;border-radius:50%;background:var(--accent);color:white;font-size:.58rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-family:'JetBrains Mono',monospace;}
+.features-list{list-style:none;margin-top:1.8rem;display:flex;flex-direction:column;gap:.9rem;}
+.features-list li{display:flex;gap:.9rem;align-items:flex-start;font-size:.88rem;color:var(--muted);line-height:1.5;}
+.feat-icon{font-size:1.1rem;flex-shrink:0;}
+.feat-text strong{display:block;color:var(--ink);font-weight:600;font-size:.9rem;margin-bottom:.1rem;}
+
+.hp-footer{background:var(--ink);color:rgba(255,255,255,.6);padding:2.8rem 5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-logo{font-family:'Lora',serif;font-size:1.15rem;font-weight:700;color:white;}
+.footer-logo span{color:var(--accent);}
+.footer-note{font-size:.76rem;color:rgba(255,255,255,.35);max-width:340px;line-height:1.6;margin-top:.4rem;}
+.footer-links{display:flex;gap:1.5rem;list-style:none;}
+.footer-links a{font-size:.76rem;color:rgba(255,255,255,.4);text-decoration:none;text-transform:uppercase;letter-spacing:.08em;transition:color .2s;cursor:pointer;}
+.footer-links a:hover{color:var(--accent);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════════════ SHARED TOPIC PAGE STYLES ═══════════════ */
+.topbar{position:sticky;top:0;z-index:200;background:var(--ink);display:flex;align-items:center;gap:.8rem;padding:.65rem 1.8rem;border-bottom:1px solid rgba(255,255,255,.06);flex-wrap:wrap;}
+.topbar-logo{font-family:'Lora',serif;font-size:1.05rem;font-weight:700;color:#fff;text-decoration:none;cursor:pointer;}
+.topbar-logo span{color:var(--accent);}
+.topbar-sep{color:rgba(255,255,255,.22);font-size:.85rem;}
+.topbar-crumb{color:rgba(255,255,255,.45);font-size:.78rem;cursor:pointer;transition:color .2s;}
+.topbar-crumb:hover{color:rgba(255,255,255,.75);}
+.topbar-crumb.active{color:rgba(255,255,255,.82);}
+.topbar-right{margin-left:auto;display:flex;gap:.5rem;flex-wrap:wrap;}
+.pill-nav{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.55);padding:.28rem .65rem;border-radius:2px;transition:all .2s;cursor:pointer;background:none;}
+.pill-nav:hover,.pill-nav.active{border-color:var(--accent);color:var(--accent);}
+
+.tp-layout{display:grid;grid-template-columns:248px 1fr;min-height:calc(100vh - 41px);}
+.sidebar{background:var(--cream);border-right:1px solid var(--border);padding:1.8rem 0;position:sticky;top:41px;height:calc(100vh - 41px);overflow-y:auto;}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--soft);}
+.sidebar-section{margin-bottom:.2rem;}
+.sidebar-heading{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:.55rem 1.3rem .25rem;}
+.sidebar-link{display:flex;align-items:center;gap:.55rem;padding:.42rem 1.3rem;font-size:.82rem;font-weight:500;color:var(--muted);text-decoration:none;border-left:2px solid transparent;transition:all .15s;cursor:pointer;}
+.sidebar-link:hover{color:var(--ink);background:rgba(0,0,0,.03);border-left-color:var(--border);}
+.sidebar-link.active{color:var(--accent);background:var(--accent-dim);border-left-color:var(--accent);}
+.sidebar-dot{width:6px;height:6px;border-radius:50%;background:var(--soft);flex-shrink:0;transition:background .15s;}
+.sidebar-link.active .sidebar-dot{background:var(--accent);}
+.sidebar-sub{display:flex;align-items:center;gap:.55rem;padding:.32rem 1.3rem .32rem 2.5rem;font-size:.78rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;transition:all .15s;cursor:pointer;}
+.sidebar-sub:hover{color:var(--ink);}
+
+.tp-main{overflow:hidden;}
+.page-hero{background:var(--ink);padding:3rem 3rem 2.8rem;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.06);}
+.hero-breadcrumb{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:.9rem;}
+.hero-breadcrumb span{color:var(--accent);cursor:pointer;transition:color .2s;}
+.hero-breadcrumb span:hover{text-decoration:underline;}
+.page-hero h1{font-family:'Lora',serif;font-size:2.4rem;font-weight:700;color:#fff;line-height:1.1;letter-spacing:-.02em;margin-bottom:.9rem;}
+.page-hero h1 em{font-style:italic;color:var(--accent);}
+.hero-desc{font-size:.92rem;color:rgba(255,255,255,.5);max-width:560px;line-height:1.75;margin-bottom:1.6rem;font-weight:300;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:.45rem;}
+.chip{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);padding:.22rem .6rem;border-radius:2px;}
+.chip.accent{border-color:rgba(192,59,16,.4);color:rgba(192,59,16,.8);}
+
+.progress-bar{background:var(--cream);border-bottom:1px solid var(--border);padding:.65rem 2.8rem;display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;}
+.prog-item{display:flex;align-items:center;gap:.45rem;cursor:pointer;}
+.prog-dot{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--muted);transition:all .2s;}
+.prog-item.done .prog-dot{background:var(--accent);border-color:var(--accent);}
+.prog-item.current .prog-dot{background:var(--ink);border-color:var(--ink);}
+.prog-label{font-size:.72rem;color:var(--muted);font-weight:500;}
+.prog-item.done .prog-label{color:var(--accent);}
+.prog-item.current .prog-label{color:var(--ink);}
+
+.content{padding:2.2rem 2.8rem 4rem;}
+.content-section{display:none;animation:fadeIn .3s ease;}
+.content-section.visible{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.55rem;}
+.section-title{font-family:'Lora',serif;font-size:1.8rem;font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1.2;margin-bottom:.45rem;}
+.section-title em{font-style:italic;color:var(--accent);}
+.section-intro{font-size:.92rem;color:var(--muted);line-height:1.75;max-width:640px;margin-bottom:1.8rem;font-weight:300;}
+h3.sub-heading{font-family:'Lora',serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin:2rem 0 .65rem;letter-spacing:-.01em;}
+h3.sub-heading em{font-style:italic;color:var(--accent);}
+p.body-text{font-size:.9rem;line-height:1.8;color:#3a3730;margin-bottom:.9rem;max-width:680px;}
+
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.9rem;margin:1.2rem 0;}
+.card{background:var(--card);border:1.5px solid var(--border);border-radius:4px;padding:1.35rem;transition:all .2s;}
+.card:hover{border-color:var(--accent);box-shadow:0 4px 18px rgba(0,0,0,.06);}
+.card-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;}
+.card-title{font-family:'Lora',serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.45rem;line-height:1.3;}
+.card-body{font-size:.8rem;color:var(--muted);line-height:1.6;}
+
+.def-box{background:var(--accent-dim);border-left:3px solid var(--accent);padding:.9rem 1.1rem;border-radius:0 3px 3px 0;margin:.9rem 0 1.3rem;max-width:680px;}
+.def-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.28rem;}
+.def-text{font-size:.86rem;color:var(--ink);line-height:1.65;font-style:italic;}
+.tip-box{background:var(--green-dim);border:1px solid rgba(42,107,74,.2);border-left:3px solid var(--green);padding:.9rem 1.1rem;border-radius:0 3px 3px 0;margin:.9rem 0 1.3rem;max-width:680px;}
+.tip-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:.28rem;display:flex;align-items:center;gap:.35rem;}
+.tip-text{font-size:.85rem;color:#1a3d2b;line-height:1.65;}
+.er-box{background:var(--blue-dim);border:1px solid rgba(31,82,122,.14);border-left:3px solid var(--blue);padding:.9rem 1.1rem;border-radius:0 3px 3px 0;margin:.9rem 0 1.3rem;max-width:680px;}
+.er-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:.28rem;display:flex;align-items:center;gap:.35rem;}
+.er-text{font-size:.85rem;color:#0f2d47;line-height:1.65;}
+
+.study-card{background:var(--card);border:1.5px solid var(--border);border-radius:4px;margin-bottom:1.2rem;overflow:hidden;transition:border-color .2s;}
+.study-card:hover{border-color:var(--accent);}
+.study-header{padding:1.1rem 1.4rem;background:var(--cream);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+.study-meta{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.18rem;}
+.study-name{font-family:'Lora',serif;font-size:1rem;font-weight:600;color:var(--ink);}
+.study-toggle{font-size:1.2rem;color:var(--muted);transition:transform .25s;user-select:none;}
+.study-card.open .study-toggle{transform:rotate(45deg);}
+.study-body{display:none;padding:1.4rem;}
+.study-card.open .study-body{display:block;}
+.study-row{display:grid;grid-template-columns:95px 1fr;gap:.35rem .9rem;margin-bottom:.45rem;font-size:.84rem;}
+.study-row-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-top:.12rem;}
+.study-row-val{color:#2e2b26;line-height:1.6;}
+
+.eval-table{width:100%;border-collapse:collapse;margin-top:.9rem;font-size:.82rem;}
+.eval-table th{text-align:left;padding:.45rem .75rem;font-family:'JetBrains Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;background:var(--cream);color:var(--muted);border:1px solid var(--border);}
+.eval-table td{padding:.5rem .75rem;border:1px solid var(--border);line-height:1.5;color:#2e2b26;vertical-align:top;}
+.eval-table tr:hover td{background:#faf8f4;}
+.strength td:first-child{border-left:3px solid var(--green);}
+.weakness td:first-child{border-left:3px solid var(--accent);}
+
+.spec-table{width:100%;border-collapse:collapse;font-size:.84rem;margin:.9rem 0 1.8rem;}
+.spec-table th{text-align:left;padding:.55rem .9rem;background:var(--ink);color:rgba(255,255,255,.68);font-family:'JetBrains Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;}
+.spec-table td{padding:.55rem .9rem;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.spec-table tr:last-child td{border-bottom:none;}
+.spec-table tr:hover td{background:#faf8f4;}
+
+.methods-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin:1.2rem 0;}
+.method-card{background:var(--card);border:1.5px solid var(--border);border-radius:4px;padding:1.2rem;}
+.method-title{font-family:'Lora',serif;font-size:.98rem;font-weight:600;color:var(--ink);margin-bottom:.45rem;}
+.method-body{font-size:.81rem;color:var(--muted);line-height:1.6;}
+.method-body strong{color:var(--ink);}
+
+.wa-wrap{background:var(--ink);border-radius:4px;overflow:hidden;margin:1.3rem 0;max-width:740px;}
+.wa-topbar{padding:.65rem 1.1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);}
+.wa-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+.wa-marks{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:rgba(255,255,255,.28);}
+.wa-question{padding:.95rem 1.1rem;font-family:'Lora',serif;font-style:italic;font-size:.92rem;color:rgba(255,255,255,.68);border-bottom:1px solid rgba(255,255,255,.06);line-height:1.6;}
+.wa-body{padding:1.1rem;}
+.wa-step{display:flex;gap:.9rem;margin-bottom:.9rem;align-items:flex-start;}
+.wa-ao{flex-shrink:0;background:var(--accent);color:#fff;font-family:'JetBrains Mono',monospace;font-size:.56rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.22rem .48rem;border-radius:2px;margin-top:.15rem;min-width:34px;text-align:center;}
+.wa-ao.ao2{background:var(--blue);}
+.wa-ao.ao3{background:var(--green);}
+.wa-step-text{font-size:.83rem;color:rgba(255,255,255,.68);line-height:1.6;}
+.wa-step-text strong{color:rgba(255,255,255,.88);}
+.wa-footer{padding:.65rem 1.1rem;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.22);display:flex;gap:1.2rem;flex-wrap:wrap;}
+.wa-footer span{color:rgba(255,255,255,.38);}
+
+.divider{height:1px;background:var(--border);margin:2.2rem 0;}
+
+@media(max-width:900px){
+  .hp-nav{padding:.9rem 1.5rem;}
+  .hp-nav-links{display:none;}
+  .hp-hero{grid-template-columns:1fr;}
+  .hp-hero-right{display:none;}
+  .hp-hero-left{padding:3rem 1.5rem;}
+  .hp-topics,.hp-split-left,.hp-footer{padding:3rem 1.5rem;}
+  .hp-split{grid-template-columns:1fr;}
+  .hp-split-right{display:none;}
+  .tp-layout{grid-template-columns:1fr;}
+  .sidebar{display:none;}
+  .content{padding:1.4rem;}
+  .page-hero{padding:2rem 1.5rem;}
+  .page-hero h1{font-size:1.8rem;}
+  .progress-bar{padding:.55rem 1.4rem;}
+  .methods-grid{grid-template-columns:1fr;}
+  .topbar{padding:.55rem 1rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 1: HOMEPAGE
+═══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <nav class="hp-nav">
+    <a class="hp-logo" onclick="goHome()"><span>Psych</span>Edge</a>
+    <ul class="hp-nav-links">
+      <li><a onclick="goHome()">Home</a></li>
+      <li><a onclick="goPage('social')">Social</a></li>
+      <li><a onclick="goPage('cognitive')">Cognitive</a></li>
+      <li><a onclick="goPage('biological')">Biological</a></li>
+      <li><a class="hp-nav-cta" onclick="goPage('social')">Start Learning</a></li>
+    </ul>
+  </nav>
+
+  <section class="hp-hero">
+    <div class="hp-hero-left">
+      <div class="hero-tag">Edexcel A-Level Psychology</div>
+      <h1 class="hp-h1">Master the<br><em>mind,</em> not<br>the marking<br>scheme.</h1>
+      <p class="hp-hero-sub">Deep topic explainers, worked exam answers, and examiner report insights — built for the Edexcel A-Level Psychology specification.</p>
+      <div class="hp-hero-actions">
+        <button class="btn-primary" onclick="goPage('social')">Explore Topics</button>
+        <button class="btn-secondary" onclick="goPage('social')">See Sample Notes</button>
+      </div>
+      <div class="hp-hero-stats">
+        <div><div class="stat-num">16</div><div class="stat-label">Core Topics</div></div>
+        <div><div class="stat-num">100+</div><div class="stat-label">Worked Examples</div></div>
+        <div><div class="stat-num">Free</div><div class="stat-label">Always</div></div>
+      </div>
+    </div>
+    <div class="hp-hero-right">
+      <svg class="hero-svg" viewBox="0 0 420 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="g1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#c03b10" stop-opacity=".4"/><stop offset="100%" stop-color="#c03b10" stop-opacity="0"/></radialGradient>
+          <radialGradient id="g2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#1f527a" stop-opacity=".3"/><stop offset="100%" stop-color="#1f527a" stop-opacity="0"/></radialGradient>
+        </defs>
+        <circle cx="210" cy="200" r="155" fill="url(#g1)"/><circle cx="260" cy="155" r="95" fill="url(#g2)"/>
+        <g stroke="rgba(255,255,255,.1)" stroke-width="1" fill="none"><ellipse cx="175" cy="195" rx="95" ry="125"/><ellipse cx="250" cy="190" rx="90" ry="120"/><ellipse cx="212" cy="165" rx="135" ry="96"/></g>
+        <g stroke="rgba(192,59,16,.5)" stroke-width="1.5" fill="none" stroke-dasharray="4 6">
+          <line x1="115" y1="135" x2="212" y2="195"/><line x1="308" y1="125" x2="212" y2="195"/>
+          <line x1="143" y1="272" x2="212" y2="195"/><line x1="280" y1="280" x2="212" y2="195"/>
+          <line x1="95" y1="205" x2="212" y2="195"/><line x1="330" y1="215" x2="212" y2="195"/>
+          <line x1="172" y1="96" x2="212" y2="195"/><line x1="252" y1="90" x2="212" y2="195"/>
+        </g>
+        <g fill="#c03b10"><circle cx="115" cy="135" r="5.5"/><circle cx="308" cy="125" r="5.5"/><circle cx="143" cy="272" r="5.5"/><circle cx="280" cy="280" r="5.5"/><circle cx="95" cy="205" r="5.5"/><circle cx="330" cy="215" r="5.5"/><circle cx="172" cy="96" r="5.5"/><circle cx="252" cy="90" r="5.5"/></g>
+        <circle cx="212" cy="195" r="13" fill="white" opacity=".14"/><circle cx="212" cy="195" r="7.5" fill="white" opacity=".9"/>
+        <text x="66" y="129" fill="rgba(255,255,255,.55)" font-size="9.5" font-family="Outfit,sans-serif">Social Influence</text>
+        <text x="314" y="120" fill="rgba(255,255,255,.55)" font-size="9.5" font-family="Outfit,sans-serif">Memory</text>
+        <text x="44" y="200" fill="rgba(255,255,255,.55)" font-size="9.5" font-family="Outfit,sans-serif">Attachment</text>
+        <text x="336" y="210" fill="rgba(255,255,255,.55)" font-size="9.5" font-family="Outfit,sans-serif">Psychopathology</text>
+        <text x="92" y="286" fill="rgba(255,255,255,.55)" font-size="9.5" font-family="Outfit,sans-serif">Biopsychology</text>
+        <text x="284" y="294" fill="rgba(255,255,255,.55)" font-size="9.5" font-family="Outfit,sans-serif">Research Methods</text>
+        <text x="130" y="88" fill="rgba(255,255,255,.55)" font-size="9.5" font-family="Outfit,sans-serif">Approaches</text>
+        <text x="257" y="82" fill="rgba(255,255,255,.55)" font-size="9.5" font-family="Outfit,sans-serif">Cognition</text>
+      </svg>
+    </div>
+  </section>
+
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span>Social Influence</span><span class="dot">◆</span><span>Memory</span><span class="dot">◆</span><span>Attachment</span><span class="dot">◆</span><span>Psychopathology</span><span class="dot">◆</span><span>Approaches</span><span class="dot">◆</span><span>Biopsychology</span><span class="dot">◆</span><span>Research Methods</span><span class="dot">◆</span><span>Relationships</span><span class="dot">◆</span><span>Schizophrenia</span><span class="dot">◆</span><span>Forensic Psychology</span><span class="dot">◆</span>
+      <span>Social Influence</span><span class="dot">◆</span><span>Memory</span><span class="dot">◆</span><span>Attachment</span><span class="dot">◆</span><span>Psychopathology</span><span class="dot">◆</span><span>Approaches</span><span class="dot">◆</span><span>Biopsychology</span><span class="dot">◆</span><span>Research Methods</span><span class="dot">◆</span><span>Relationships</span><span class="dot">◆</span><span>Schizophrenia</span><span class="dot">◆</span><span>Forensic Psychology</span><span class="dot">◆</span>
+    </div>
+  </div>
+
+  <section class="hp-topics">
+    <div class="topics-header">
+      <div>
+        <div class="hp-section-tag">Specification Coverage</div>
+        <h2 class="hp-section-h">Every topic.<br><em>Fully explained.</em></h2>
+        <p class="hp-section-sub">All Edexcel AS and A-Level topics with notes, studies, methods, and exam skills.</p>
+      </div>
+    </div>
+    <div class="topics-grid">
+      <div class="topic-card" onclick="goPage('social')">
+        <div class="topic-num">01 — AS Level</div><span class="topic-icon">🧠</span>
+        <div class="topic-title">Social Psychology <span class="live-badge">Live</span></div>
+        <div class="topic-desc">Obedience, conformity, minority influence. Milgram, Asch, Moscovici, Burger, Haun.</div>
+        <span class="topic-pill">5 Key Studies</span>
+      </div>
+      <div class="topic-card" onclick="goPage('cognitive')">
+        <div class="topic-num">02 — AS Level</div><span class="topic-icon">💭</span>
+        <div class="topic-title">Cognitive Psychology <span class="live-badge">Live</span></div>
+        <div class="topic-desc">Multi-store model, working memory, reconstructive memory. Bartlett, Schmolck, Sacchi.</div>
+        <span class="topic-pill">3 Key Studies</span>
+      </div>
+      <div class="topic-card" onclick="goPage('biological')">
+        <div class="topic-num">03 — AS Level</div><span class="topic-icon">⚡</span>
+        <div class="topic-title">Biological Psychology <span class="live-badge">Live</span></div>
+        <div class="topic-desc">CNS, neurotransmission, aggression, circadian rhythms. Raine, Brendgen, McDermott.</div>
+        <span class="topic-pill">3 Key Studies</span>
+      </div>
+      <div class="topic-card">
+        <div class="topic-num">04 — AS Level</div><span class="topic-icon">🌿</span>
+        <div class="topic-title">Learning Theories & Development</div>
+        <div class="topic-desc">Classical conditioning, operant conditioning, SLT, psychosexual stages.</div>
+        <span class="topic-pill">Coming soon</span>
+      </div>
+      <div class="topic-card">
+        <div class="topic-num">05 — A-Level</div><span class="topic-icon">👶</span>
+        <div class="topic-title">Developmental Psychology</div>
+        <div class="topic-desc">Attachment, Piaget, Vygotsky, Erikson, language development.</div>
+        <span class="topic-pill">Coming soon</span>
+      </div>
+      <div class="topic-card">
+        <div class="topic-num">06 — A-Level</div><span class="topic-icon">🔍</span>
+        <div class="topic-title">Criminological Psychology</div>
+        <div class="topic-desc">Explanations for crime, EWT, cognitive interview, juries.</div>
+        <span class="topic-pill">Coming soon</span>
+      </div>
+      <div class="topic-card">
+        <div class="topic-num">07 — A-Level</div><span class="topic-icon">🧩</span>
+        <div class="topic-title">Clinical Psychology</div>
+        <div class="topic-desc">Definitions of abnormality, schizophrenia, depression, treatments.</div>
+        <span class="topic-pill">Coming soon</span>
+      </div>
+      <div class="topic-card">
+        <div class="topic-num">08 — A-Level</div><span class="topic-icon">📊</span>
+        <div class="topic-title">Psychological Skills</div>
+        <div class="topic-desc">Issues & debates, nature vs nurture, reductionism, psychology as science.</div>
+        <span class="topic-pill">Coming soon</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="hp-split">
+    <div class="hp-split-left">
+      <div class="hp-section-tag">How it Works</div>
+      <h2 class="hp-section-h">Built to help you <em>understand,</em><br>not just memorise.</h2>
+      <p class="hp-section-sub">Every topic is structured around AO1, AO2, and AO3 — the three objectives Edexcel actually marks against.</p>
+      <ul class="features-list">
+        <li><span class="feat-icon">📖</span><span class="feat-text"><strong>Layered Explainers</strong>Clear definitions, theory, and application structured to match how memory works.</span></li>
+        <li><span class="feat-icon">✍️</span><span class="feat-text"><strong>Worked Exam Answers</strong>Top-band answers annotated with AO labels and mark breakdowns.</span></li>
+        <li><span class="feat-icon">📋</span><span class="feat-text"><strong>Examiner Report Insights</strong>Real feedback from Edexcel's examiners — the exact mistakes that cost marks.</span></li>
+        <li><span class="feat-icon">💡</span><span class="feat-text"><strong>Exam Tips</strong>Mnemonics, structure formulas, and application strategies.</span></li>
+      </ul>
+    </div>
+    <div class="hp-split-right">
+      <div class="example-card">
+        <div class="example-label">Worked Example — 8-mark question</div>
+        <div class="example-q">"Outline and evaluate Milgram's (1963) study of obedience." [8 marks]</div>
+        <ul class="example-steps">
+          <li><div class="step-dot">1</div><span><strong style="color:rgba(255,255,255,.88)">AO1 — Procedure:</strong> 40 male participants administered shocks (15–450V) to a confederate 'learner' using standardised prods.</span></li>
+          <li><div class="step-dot">2</div><span><strong style="color:rgba(255,255,255,.88)">AO1 — Findings:</strong> 65% reached 450V — far exceeding expert predictions of &lt;1%.</span></li>
+          <li><div class="step-dot">3</div><span><strong style="color:rgba(255,255,255,.88)">AO3 — Evaluation:</strong> High internal validity but serious BPS violations — deception, harm, prods undermining right to withdraw.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer class="hp-footer">
+    <div>
+      <div class="footer-logo"><span>Psych</span>Edge</div>
+      <p class="footer-note">A free learning resource for Edexcel A-Level Psychology students. Not affiliated with Pearson or Edexcel.</p>
+    </div>
+    <ul class="footer-links">
+      <li><a onclick="goPage('social')">Social</a></li>
+      <li><a onclick="goPage('cognitive')">Cognitive</a></li>
+      <li><a onclick="goPage('biological')">Biological</a></li>
+    </ul>
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE 2: SOCIAL PSYCHOLOGY
+═══════════════════════════════════════════ -->
+<div class="page" id="page-social">
+  <nav class="topbar">
+    <span class="topbar-logo" onclick="goHome()"><span>Psych</span>Edge</span>
+    <span class="topbar-sep">›</span><span class="topbar-crumb" onclick="goHome()">AS Level</span>
+    <span class="topbar-sep">›</span><span class="topbar-crumb active">Social Psychology</span>
+    <div class="topbar-right">
+      <button class="pill-nav active" onclick="showSection('s','content')">Content</button>
+      <button class="pill-nav" onclick="showSection('s','studies')">Studies</button>
+      <button class="pill-nav" onclick="showSection('s','methods')">Methods</button>
+      <button class="pill-nav" onclick="showSection('s','exam')">Exam Skills</button>
+    </div>
+  </nav>
+  <div class="tp-layout">
+    <aside class="sidebar">
+      <div class="sidebar-section"><div class="sidebar-heading">Content</div>
+        <a class="sidebar-link active" onclick="showSection('s','content')"><span class="sidebar-dot"></span>Obedience</a>
+        <a class="sidebar-sub">Agency Theory</a><a class="sidebar-sub">Social Power Theory</a><a class="sidebar-sub">Factors Affecting Obedience</a>
+        <a class="sidebar-link" onclick="showSection('s','content')"><span class="sidebar-dot"></span>Conformity</a>
+        <a class="sidebar-sub">Types of Conformity</a><a class="sidebar-sub">Minority Influence</a><a class="sidebar-sub">Factors Affecting Conformity</a>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-heading">Studies</div>
+        <a class="sidebar-link" onclick="showSection('s','studies')"><span class="sidebar-dot"></span>Milgram (1963)</a>
+        <a class="sidebar-link" onclick="showSection('s','studies')"><span class="sidebar-dot"></span>Asch (1951)</a>
+        <a class="sidebar-link" onclick="showSection('s','studies')"><span class="sidebar-dot"></span>Moscovici et al. (1969)</a>
+        <a class="sidebar-link" onclick="showSection('s','studies')"><span class="sidebar-dot"></span>Burger (2009)</a>
+        <a class="sidebar-link" onclick="showSection('s','studies')"><span class="sidebar-dot"></span>Haun et al. (2014)</a>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-heading">Methods</div>
+        <a class="sidebar-link" onclick="showSection('s','methods')"><span class="sidebar-dot"></span>Self-Report Methods</a>
+        <a class="sidebar-link" onclick="showSection('s','methods')"><span class="sidebar-dot"></span>Sampling Techniques</a>
+        <a class="sidebar-link" onclick="showSection('s','methods')"><span class="sidebar-dot"></span>Quantitative Data</a>
+        <a class="sidebar-link" onclick="showSection('s','methods')"><span class="sidebar-dot"></span>BPS Ethics</a>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-heading">Exam Skills</div>
+        <a class="sidebar-link" onclick="showSection('s','exam')"><span class="sidebar-dot"></span>Worked Answers</a>
+      </div>
+    </aside>
+    <main class="tp-main">
+      <div class="page-hero">
+        <div class="hero-breadcrumb">AS Level → <span onclick="goHome()">All Topics</span> → <span>Social Psychology</span></div>
+        <h1>Social <em>Psychology</em></h1>
+        <p class="hero-desc">Obedience, conformity, and minority influence — how the individual relates to groups, authority, and society.</p>
+        <div class="hero-chips"><span class="chip">Edexcel Spec</span><span class="chip">AS Level</span><span class="chip accent">5 Key Studies</span><span class="chip">Methods</span><span class="chip">Worked Answers</span></div>
+      </div>
+      <div class="progress-bar">
+        <div class="prog-item done" onclick="showSection('s','content')"><div class="prog-dot"></div><span class="prog-label">Content</span></div>
+        <div class="prog-item current" onclick="showSection('s','studies')"><div class="prog-dot"></div><span class="prog-label">Studies</span></div>
+        <div class="prog-item" onclick="showSection('s','methods')"><div class="prog-dot"></div><span class="prog-label">Methods</span></div>
+        <div class="prog-item" onclick="showSection('s','exam')"><div class="prog-dot"></div><span class="prog-label">Exam Skills</span></div>
+      </div>
+
+      <!-- SOCIAL CONTENT -->
+      <div class="content-section visible" id="s-content"><div class="content">
+        <div class="section-eyebrow">Content — Obedience</div>
+        <h2 class="section-title">Theories of <em>Obedience</em></h2>
+        <p class="section-intro">Obedience is a form of social influence where an individual follows a direct order from an authority figure. Edexcel requires two theories: Agency Theory and Social Power Theory.</p>
+        <h3 class="sub-heading">Agency Theory <em>(Milgram, 1974)</em></h3>
+        <div class="def-box"><div class="def-label">Core Definition</div><div class="def-text">Agency theory proposes that people shift between the <strong>autonomous state</strong> (acting on their own conscience) and the <strong>agentic state</strong> (acting as an agent of authority). In the agentic state, moral responsibility is transferred upward, making obedience easier to sustain.</div></div>
+        <p class="body-text">The <strong>agentic shift</strong> is the transition between states, triggered by entering a social hierarchy with a legitimate authority. <strong>Binding factors</strong> (politeness, gradual escalation, fear of consequences) keep the individual obedient even under <em>moral strain</em>.</p>
+        <div class="tip-box"><div class="tip-label">💡 Exam Tip</div><div class="tip-text">When applying agency theory to a scenario: (1) name the theory, (2) identify the agentic shift, (3) name a binding factor, (4) explain why responsibility is transferred. Four steps = 4 marks covered.</div></div>
+        <h3 class="sub-heading">Social Power Theory <em>(French & Raven, 1959)</em></h3>
+        <div class="def-box"><div class="def-label">Core Definition</div><div class="def-text">French and Raven identified five bases of power: Reward, Coercive, Legitimate, Referent, and Expert (RCLRE).</div></div>
+        <div class="card-grid">
+          <div class="card"><div class="card-label">Reward Power</div><div class="card-title">Compliance via reward</div><div class="card-body">Authority can provide something desirable — pay, praise, or promotion.</div></div>
+          <div class="card"><div class="card-label">Coercive Power</div><div class="card-title">Compliance via threat</div><div class="card-body">Obedience driven by fear of punishment for non-compliance.</div></div>
+          <div class="card"><div class="card-label">Legitimate Power</div><div class="card-title">Compliance via role</div><div class="card-body">Authority holds a recognised social role whose right to command is accepted as valid.</div></div>
+          <div class="card"><div class="card-label">Referent Power</div><div class="card-title">Compliance via identity</div><div class="card-body">Individual identifies with or admires the authority figure.</div></div>
+          <div class="card"><div class="card-label">Expert Power</div><div class="card-title">Compliance via knowledge</div><div class="card-body">Authority perceived to have superior knowledge — Milgram's experimenter's lab coat.</div></div>
+        </div>
+        <div class="tip-box"><div class="tip-label">💡 Mnemonic — RCLRE</div><div class="tip-text">"Really Cool Lecturers Receive Exams" = Reward, Coercive, Legitimate, Referent, Expert. Common 2-marker asks you to name two bases.</div></div>
+        <h3 class="sub-heading">Factors Affecting <em>Obedience & Dissent</em></h3>
+        <table class="spec-table"><thead><tr><th>Factor</th><th>Effect</th><th>Evidence</th></tr></thead><tbody>
+          <tr><td><strong>Personality</strong></td><td>Authoritarian personality — high F-scale scorers show greater deference to authority.</td><td>Elms & Milgram (1966)</td></tr>
+          <tr><td><strong>Gender</strong></td><td>Mixed findings — Milgram found no significant gender difference.</td><td>Female replications (~65%)</td></tr>
+          <tr><td><strong>Proximity</strong></td><td>Closer proximity to victim → lower obedience. Telephonic: 20.5%.</td><td>Milgram Exp. 7</td></tr>
+          <tr><td><strong>Location</strong></td><td>Prestige matters. Rundown office: 47.5% vs Yale: 65%.</td><td>Milgram Exp. 10</td></tr>
+          <tr><td><strong>Authority figure</strong></td><td>Ordinary man giving orders: fell to 20%.</td><td>Milgram Exp. 13</td></tr>
+          <tr><td><strong>Culture</strong></td><td>Higher obedience in hierarchical societies. Dutch replication: 91%.</td><td>Meeus & Raaijmakers (1986)</td></tr>
+        </tbody></table>
+        <div class="divider"></div>
+        <div class="section-eyebrow">Content — Conformity</div>
+        <h2 class="section-title">Types & Explanations of <em>Conformity</em></h2>
+        <p class="section-intro">Conformity is a change in behaviour or belief due to real or imagined group pressure. Edexcel requires Kelman's three types and NSI/ISI explanations.</p>
+        <h3 class="sub-heading">Kelman's Three Types</h3>
+        <div class="card-grid">
+          <div class="card"><div class="card-label">Deepest</div><div class="card-title">Internalisation</div><div class="card-body">Permanent change to both public behaviour and private beliefs. Persists without the group. Associated with <strong>ISI</strong>.</div></div>
+          <div class="card"><div class="card-label">Intermediate</div><div class="card-title">Identification</div><div class="card-body">Change while individual values group membership. E.g. adopting a new professional role's norms.</div></div>
+          <div class="card"><div class="card-label">Most superficial</div><div class="card-title">Compliance</div><div class="card-body">Only public behaviour changes. Stops when group pressure lifts. Associated with <strong>NSI</strong>.</div></div>
+        </div>
+        <div class="def-box"><div class="def-label">NSI vs ISI</div><div class="def-text"><strong>Normative Social Influence (NSI):</strong> Conform to gain approval, avoid rejection → compliance.<br><br><strong>Informational Social Influence (ISI):</strong> Conform because others have better information → internalisation.</div></div>
+        <div class="er-box"><div class="er-label">📋 Examiner Report</div><div class="er-text">Students frequently fail to link ISI → internalisation and NSI → compliance. Always state this chain explicitly.</div></div>
+        <h3 class="sub-heading">Minority Influence <em>(Moscovici, 1976)</em></h3>
+        <div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
+          <div class="card"><div class="card-label">Factor 1</div><div class="card-title">Consistency</div><div class="card-body">Maintains position across time (diachronic) and situations (synchronic). Signals confidence.</div></div>
+          <div class="card"><div class="card-label">Factor 2</div><div class="card-title">Commitment</div><div class="card-body">Investment at personal cost (augmentation principle). Increases perceived sincerity.</div></div>
+          <div class="card"><div class="card-label">Factor 3</div><div class="card-title">Flexibility</div><div class="card-body">Some willingness to adapt. Rigid minorities appear dogmatic and are dismissed.</div></div>
+        </div>
+        <h3 class="sub-heading">Factors Affecting <em>Conformity</em></h3>
+        <table class="spec-table"><thead><tr><th>Factor</th><th>Effect</th><th>Asch Evidence</th></tr></thead><tbody>
+          <tr><td><strong>Group size</strong></td><td>Increases to 3 confederates, then plateaus.</td><td>1 = 3%; 3 = 31%</td></tr>
+          <tr><td><strong>Unanimity</strong></td><td>One dissenting ally dramatically reduces conformity.</td><td>32% → 5.5%</td></tr>
+          <tr><td><strong>Task difficulty</strong></td><td>More ambiguous → more ISI.</td><td>Harder lines = more conformity</td></tr>
+          <tr><td><strong>Anonymity</strong></td><td>Written answers → ~0% conformity. Removes NSI.</td><td>Written-response: ~0%</td></tr>
+        </tbody></table>
+      </div></div>
+
+      <!-- SOCIAL STUDIES -->
+      <div class="content-section" id="s-studies"><div class="content">
+        <div class="section-eyebrow">Key Studies</div>
+        <h2 class="section-title">Core <em>Studies</em></h2>
+        <p class="section-intro">All five studies are examinable. Moscovici is the named classic study; Burger and Haun are named contemporary studies.</p>
+
+        <div class="study-card open">
+          <div class="study-header" onclick="toggleStudy(this)"><div><div class="study-meta">Classic Study — Obedience</div><div class="study-name">Milgram (1963) — Behavioural Study of Obedience</div></div><span class="study-toggle">+</span></div>
+          <div class="study-body">
+            <div class="study-row"><div class="study-row-label">Aim</div><div class="study-row-val">To investigate whether ordinary Americans would obey authority instructions to harm an innocent person.</div></div>
+            <div class="study-row"><div class="study-row-label">Sample</div><div class="study-row-val">40 male participants, aged 20–50. Volunteer sample via newspaper ad. Confederate acted as 'learner'.</div></div>
+            <div class="study-row"><div class="study-row-label">Procedure</div><div class="study-row-val">Participants administered believed electric shocks (15–450V, 15V increments) for wrong answers. Experimenter gave standardised prods. Learner's protests pre-recorded.</div></div>
+            <div class="study-row"><div class="study-row-label">Results</div><div class="study-row-val">65% (26/40) administered 450V. All continued to at least 300V. Psychiatrists predicted fewer than 1% would reach maximum.</div></div>
+            <div class="study-row"><div class="study-row-label">Conclusion</div><div class="study-row-val">Situational factors override individual conscience. Ordinary people cause harm in the agentic state under a legitimate authority structure.</div></div>
+            <h4 style="margin:1.2rem 0 .5rem;font-size:.78rem;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Variation Studies</h4>
+            <table class="eval-table"><thead><tr><th>Variation</th><th>Change</th><th>Rate</th><th>Conclusion</th></tr></thead><tbody>
+              <tr><td><strong>Exp. 7</strong></td><td>Instructions by phone</td><td>20.5%</td><td>Physical presence increases obedience</td></tr>
+              <tr><td><strong>Exp. 10</strong></td><td>Run-down Bridgeport office</td><td>47.5%</td><td>Prestige signals legitimate power</td></tr>
+              <tr><td><strong>Exp. 13</strong></td><td>Ordinary man gives orders</td><td>20%</td><td>Legitimate role/uniform essential</td></tr>
+            </tbody></table>
+            <h4 style="margin:1.2rem 0 .5rem;font-size:.78rem;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Evaluation</h4>
+            <table class="eval-table"><thead><tr><th style="width:13%">Type</th><th>Point</th><th>Elaboration</th></tr></thead><tbody>
+              <tr class="strength"><td>✓ Strength</td><td>High internal validity</td><td>Standardised procedure and scripted prods allow replication — Burger (2009) closely followed the design.</td></tr>
+              <tr class="strength"><td>✓ Strength</td><td>Real behaviour observed</td><td>Visible distress confirms participants believed the situation — obedience was genuine.</td></tr>
+              <tr class="weakness"><td>✗ Weakness</td><td>Ethical violations</td><td>Deception, psychological harm, and prods undermining right to withdraw — all breach BPS guidelines.</td></tr>
+              <tr class="weakness"><td>✗ Weakness</td><td>Ecological validity</td><td>Orne & Holland (1968): demand characteristics may have inflated obedience. Artificial lab setting.</td></tr>
+            </tbody></table>
+            <div class="er-box" style="margin-top:1rem"><div class="er-label">📋 Examiner Report</div><div class="er-text">Always specify the shock range (15–450V), use the word 'prods', and call the confederate a 'learner'. Link each ethical violation to a specific BPS principle — not just 'it was unethical'.</div></div>
+          </div>
+        </div>
+
+        <div class="study-card"><div class="study-header" onclick="toggleStudy(this)"><div><div class="study-meta">Core Study — Conformity</div><div class="study-name">Asch (1951) — Studies of Independence and Conformity</div></div><span class="study-toggle">+</span></div>
+          <div class="study-body">
+            <div class="study-row"><div class="study-row-label">Aim</div><div class="study-row-val">To investigate whether individuals would conform to a clearly incorrect unanimous majority.</div></div>
+            <div class="study-row"><div class="study-row-label">Sample</div><div class="study-row-val">123 male US undergraduates placed with 6–8 confederates each.</div></div>
+            <div class="study-row"><div class="study-row-label">Procedure</div><div class="study-row-val">Participants matched a standard line to one of three comparison lines. In 12 of 18 critical trials, confederates gave an obviously wrong unanimous answer.</div></div>
+            <div class="study-row"><div class="study-row-label">Results</div><div class="study-row-val">36.8% conformity rate per critical trial. 75% conformed at least once. Control condition error rate: &lt;1%.</div></div>
+            <div class="study-row"><div class="study-row-label">Conclusion</div><div class="study-row-val">Conformity occurs even when the answer is obvious — driven by NSI, not ISI.</div></div>
+            <div class="er-box" style="margin-top:1rem"><div class="er-label">📋 Examiner Report</div><div class="er-text">Common error: stating 36.8% "conformed on all trials" — this is the per-trial rate. Participants knew the answers were wrong, confirming NSI not ISI. State this explicitly.</div></div>
+          </div>
+        </div>
+
+        <div class="study-card"><div class="study-header" onclick="toggleStudy(this)"><div><div class="study-meta">Classic Study — Minority Influence</div><div class="study-name">Moscovici et al. (1969) — Influence of a Consistent Minority on Colour Perception</div></div><span class="study-toggle">+</span></div>
+          <div class="study-body">
+            <div class="study-row"><div class="study-row-label">Aim</div><div class="study-row-val">To investigate whether a consistent minority could influence the majority's responses in a colour-naming task.</div></div>
+            <div class="study-row"><div class="study-row-label">Sample</div><div class="study-row-val">172 female participants with normal colour vision. Groups of 6: 4 naive, 2 confederates.</div></div>
+            <div class="study-row"><div class="study-row-label">Procedure</div><div class="study-row-val">36 clearly blue slides shown. Confederates consistently called slides 'green' (consistent) or alternated (inconsistent condition).</div></div>
+            <div class="study-row"><div class="study-row-label">Results</div><div class="study-row-val">Consistent minority: 8.42% 'green' responses vs 1.25% inconsistent and 0.25% control. 32% of consistent condition participants called at least one slide 'green'.</div></div>
+            <div class="study-row"><div class="study-row-label">Conclusion</div><div class="study-row-val">Consistent minorities can influence majorities. Behavioural consistency is the key mechanism of minority influence.</div></div>
+          </div>
+        </div>
+
+        <div class="study-card"><div class="study-header" onclick="toggleStudy(this)"><div><div class="study-meta">Contemporary Study — Obedience</div><div class="study-name">Burger (2009) — Replicating Milgram: Would People Still Obey Today?</div></div><span class="study-toggle">+</span></div>
+          <div class="study-body">
+            <div class="study-row"><div class="study-row-label">Aim</div><div class="study-row-val">To ethically replicate Milgram and test whether obedience rates have changed since the 1960s.</div></div>
+            <div class="study-row"><div class="study-row-label">Sample</div><div class="study-row-val">70 participants (29M, 41F), aged 20–81. Pre-screened to exclude psychological conditions.</div></div>
+            <div class="study-row"><div class="study-row-label">Procedure</div><div class="study-row-val">Modified Milgram — stopped at 150V. Participants told they could stop. Modelled refusal condition included.</div></div>
+            <div class="study-row"><div class="study-row-label">Results</div><div class="study-row-val">70% continued to 150V. Modelled refusal condition: 52.5%.</div></div>
+            <div class="study-row"><div class="study-row-label">Conclusion</div><div class="study-row-val">Obedience to authority is largely unchanged since 1963.</div></div>
+            <div class="er-box" style="margin-top:1rem"><div class="er-label">📋 Examiner Report</div><div class="er-text">Don't confuse Burger's 70% (at 150V) with Milgram's 65% (at 450V) — they are not directly comparable. State both the ethical strength and the limitation of stopping early.</div></div>
+          </div>
+        </div>
+
+        <div class="study-card"><div class="study-header" onclick="toggleStudy(this)"><div><div class="study-meta">Contemporary Study — Conformity</div><div class="study-name">Haun et al. (2014) — Conformity to Peer Opinions Lasts No More Than 3 Days</div></div><span class="study-toggle">+</span></div>
+          <div class="study-body">
+            <div class="study-row"><div class="study-row-label">Aim</div><div class="study-row-val">To investigate whether children's conformity to peer opinions was lasting or temporary.</div></div>
+            <div class="study-row"><div class="study-row-label">Sample</div><div class="study-row-val">126 children (~age 8) from a German school.</div></div>
+            <div class="study-row"><div class="study-row-label">Procedure</div><div class="study-row-val">Children identified which object appeared most in scenes. After hearing incorrect peer majority answers, responses tested after 1 day and 1 week.</div></div>
+            <div class="study-row"><div class="study-row-label">Results</div><div class="study-row-val">~22% conformed initially. After 1 week, conformity effects negligible.</div></div>
+            <div class="study-row"><div class="study-row-label">Conclusion</div><div class="study-row-val">Peer conformity in children is NSI-driven compliance, not internalisation — dissipates without sustained group pressure.</div></div>
+            <div class="tip-box" style="margin-top:1rem"><div class="tip-label">💡 Link to Kelman</div><div class="tip-text">Rapid fade of conformity confirms NSI/compliance, not genuine belief change. Use this to evaluate Kelman's types in extended writing.</div></div>
+          </div>
+        </div>
+      </div></div>
+
+      <!-- SOCIAL METHODS -->
+      <div class="content-section" id="s-methods"><div class="content">
+        <div class="section-eyebrow">Methods</div>
+        <h2 class="section-title">Research Methods in <em>Social Psychology</em></h2>
+        <p class="section-intro">Edexcel requires knowledge of self-report methods, sampling, quantitative data analysis, and BPS ethics.</p>
+        <h3 class="sub-heading">Self-Report Methods</h3>
+        <div class="methods-grid">
+          <div class="method-card"><div class="method-title">Questionnaires</div><div class="method-body">Written questions without researcher input. Include <strong>open</strong> (qualitative), <strong>closed</strong> (quantitative), and <strong>ranked scale</strong> questions.<br><br><strong>Strengths:</strong> Large samples; cost-effective; no interviewer bias.<br><strong>Weaknesses:</strong> Social desirability bias; cannot probe answers.</div></div>
+          <div class="method-card"><div class="method-title">Interviews</div><div class="method-body"><strong>Structured:</strong> Identical questions — high reliability, low validity.<br><strong>Semi-structured:</strong> Core questions + probing — balanced.<br><strong>Unstructured:</strong> Participant-led — highest validity, lowest reliability. Strong interviewer effects.</div></div>
+        </div>
+        <div class="tip-box"><div class="tip-label">💡 Researcher Effects</div><div class="tip-text">The spec explicitly mentions 'researcher effects' — how the interviewer's characteristics influence participant responses, reducing validity. Always contrast with questionnaires where researcher presence is removed.</div></div>
+        <h3 class="sub-heading">Sampling Techniques</h3>
+        <table class="spec-table"><thead><tr><th>Method</th><th>How it works</th><th>Strength</th><th>Weakness</th></tr></thead><tbody>
+          <tr><td><strong>Random</strong></td><td>Equal chance for all members of target population.</td><td>Minimises bias; most representative.</td><td>Requires full population list.</td></tr>
+          <tr><td><strong>Stratified</strong></td><td>Proportional random selection from subgroups.</td><td>Captures subgroup variation.</td><td>Complex; strata must be defined.</td></tr>
+          <tr><td><strong>Volunteer</strong></td><td>Participants self-select via advertisement.</td><td>Easy and ethical; willing participants.</td><td>Volunteer bias — may attract compliant individuals.</td></tr>
+          <tr><td><strong>Opportunity</strong></td><td>Most available individuals selected.</td><td>Quick and practical.</td><td>Highly unrepresentative.</td></tr>
+        </tbody></table>
+        <h3 class="sub-heading">BPS Ethical Guidelines</h3>
+        <div class="card-grid">
+          <div class="card"><div class="card-label">Guideline 1</div><div class="card-title">Informed Consent</div><div class="card-body">Sufficient info to decide to participate. Milgram's deception violated this.</div></div>
+          <div class="card"><div class="card-label">Guideline 2</div><div class="card-title">Right to Withdraw</div><div class="card-body">Must be able to leave at any time. Milgram's prods directly violated this.</div></div>
+          <div class="card"><div class="card-label">Guideline 3</div><div class="card-title">Protection from Harm</div><div class="card-body">Protect from physical and psychological harm. Milgram's participants showed extreme distress.</div></div>
+          <div class="card"><div class="card-label">Guideline 4</div><div class="card-title">Debrief</div><div class="card-body">Fully informed post-study. Milgram debriefed and followed up after 1 year.</div></div>
+          <div class="card"><div class="card-label">Guideline 5</div><div class="card-title">Confidentiality</div><div class="card-body">Personal data kept private; anonymity maintained where promised.</div></div>
+          <div class="card"><div class="card-label">Guideline 6</div><div class="card-title">Risk Management</div><div class="card-body">BPS (2009): assess, minimise, and monitor risks before, during, and after research.</div></div>
+        </div>
+      </div></div>
+
+      <!-- SOCIAL EXAM -->
+      <div class="content-section" id="s-exam"><div class="content">
+        <div class="section-eyebrow">Exam Skills</div>
+        <h2 class="section-title">Worked Answers & <em>Examiner Tips</em></h2>
+        <p class="section-intro">Fully worked sample answers for the three main question types, annotated with AO1/AO2/AO3.</p>
+        <h3 class="sub-heading">4-Mark — Describe</h3>
+        <div class="wa-wrap">
+          <div class="wa-topbar"><span class="wa-tag">Agency Theory</span><span class="wa-marks">4 marks · AO1</span></div>
+          <div class="wa-question">"Describe agency theory as an explanation of obedience." [4 marks]</div>
+          <div class="wa-body">
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Define:</strong> Agency theory (Milgram, 1974) proposes that people operate in either the <em>autonomous state</em> or the <em>agentic state</em> (acting as an agent of authority).</span></div>
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Agentic shift:</strong> The transition occurs when an individual enters a hierarchical structure and recognises a legitimate authority above them.</span></div>
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Binding factors:</strong> In the agentic state, responsibility transfers upward. Even under <em>moral strain</em>, <em>binding factors</em> such as politeness and gradual commitment keep the individual obedient.</span></div>
+          </div>
+          <div class="wa-footer"><span>AO1 × 3 → 4 marks</span><span>Named theorist, both states, shift, binding factors.</span></div>
+        </div>
+        <h3 class="sub-heading">8-Mark — Outline & Evaluate</h3>
+        <div class="wa-wrap">
+          <div class="wa-topbar"><span class="wa-tag">Kelman's Types of Conformity</span><span class="wa-marks">8 marks · AO1 + AO3</span></div>
+          <div class="wa-question">"Outline and evaluate Kelman's types of conformity." [8 marks]</div>
+          <div class="wa-body">
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Three types:</strong> Kelman (1958) identified <em>compliance</em> (public only, stops with pressure), <em>identification</em> (public and private while membership is valued), and <em>internalisation</em> (permanent, persists without the group).</span></div>
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Link to ISI/NSI:</strong> Compliance is driven by NSI (desire for approval); internalisation arises from ISI (accepting others' information as accurate).</span></div>
+            <div class="wa-step"><span class="wa-ao ao3">AO3</span><span class="wa-step-text"><strong>Supporting evidence:</strong> Asch (1951) — when answers were given anonymously, conformity fell to ~0%, showing the standard condition was NSI-driven compliance, not genuine belief change.</span></div>
+            <div class="wa-step"><span class="wa-ao ao3">AO3</span><span class="wa-step-text"><strong>Contradictory evidence:</strong> Haun et al. (2014) found children's peer conformity lasted no more than 3 days, challenging whether internalisation commonly occurs from everyday social influence.</span></div>
+            <div class="wa-step"><span class="wa-ao ao3">AO3</span><span class="wa-step-text"><strong>Methodological limitation:</strong> Self-reports of private beliefs are prone to social desirability bias, making it hard to verify whether genuine internalisation occurred.</span></div>
+          </div>
+          <div class="wa-footer"><span>AO1 × 4 + AO3 × 4 = 8 marks</span><span>3 developed AO3 points with evidence. Band 4.</span></div>
+        </div>
+        <div class="tip-box"><div class="tip-label">💡 8-Mark Formula</div><div class="tip-text"><strong>2 AO1 paragraphs + 3 AO3 points.</strong> Marks split 4/4. Don't overload AO1. Each AO3 point: make it → develop it → evidence it.</div></div>
+      </div></div>
+    </main>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE 3: COGNITIVE PSYCHOLOGY
+═══════════════════════════════════════════ -->
+<div class="page" id="page-cognitive">
+  <nav class="topbar">
+    <span class="topbar-logo" onclick="goHome()"><span>Psych</span>Edge</span>
+    <span class="topbar-sep">›</span><span class="topbar-crumb" onclick="goHome()">AS Level</span>
+    <span class="topbar-sep">›</span><span class="topbar-crumb active">Cognitive Psychology</span>
+    <div class="topbar-right">
+      <button class="pill-nav active" onclick="showSection('c','content')">Content</button>
+      <button class="pill-nav" onclick="showSection('c','studies')">Studies</button>
+      <button class="pill-nav" onclick="showSection('c','methods')">Methods</button>
+      <button class="pill-nav" onclick="showSection('c','exam')">Exam Skills</button>
+    </div>
+  </nav>
+  <div class="tp-layout">
+    <aside class="sidebar">
+      <div class="sidebar-section"><div class="sidebar-heading">Content</div>
+        <a class="sidebar-link active" onclick="showSection('c','content')"><span class="sidebar-dot"></span>Multi-Store Model</a>
+        <a class="sidebar-sub">Sensory Register</a><a class="sidebar-sub">Short-Term Memory</a><a class="sidebar-sub">Long-Term Memory</a>
+        <a class="sidebar-link" onclick="showSection('c','content')"><span class="sidebar-dot"></span>Working Memory Model</a>
+        <a class="sidebar-sub">Central Executive</a><a class="sidebar-sub">Phonological Loop</a><a class="sidebar-sub">Visuo-spatial Sketchpad</a>
+        <a class="sidebar-link" onclick="showSection('c','content')"><span class="sidebar-dot"></span>Reconstructive Memory</a>
+        <a class="sidebar-sub">Schema Theory</a><a class="sidebar-sub">Bartlett's Work</a>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-heading">Studies</div>
+        <a class="sidebar-link" onclick="showSection('c','studies')"><span class="sidebar-dot"></span>Bartlett (1932)</a>
+        <a class="sidebar-link" onclick="showSection('c','studies')"><span class="sidebar-dot"></span>Schmolck et al. (2002)</a>
+        <a class="sidebar-link" onclick="showSection('c','studies')"><span class="sidebar-dot"></span>Sacchi et al. (2007)</a>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-heading">Methods</div>
+        <a class="sidebar-link" onclick="showSection('c','methods')"><span class="sidebar-dot"></span>Experimental Methods</a>
+        <a class="sidebar-link" onclick="showSection('c','methods')"><span class="sidebar-dot"></span>Experimental Designs</a>
+        <a class="sidebar-link" onclick="showSection('c','methods')"><span class="sidebar-dot"></span>Variables & Hypotheses</a>
+        <a class="sidebar-link" onclick="showSection('c','methods')"><span class="sidebar-dot"></span>Validity & Reliability</a>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-heading">Exam Skills</div>
+        <a class="sidebar-link" onclick="showSection('c','exam')"><span class="sidebar-dot"></span>Worked Answers</a>
+      </div>
+    </aside>
+    <main class="tp-main">
+      <div class="page-hero">
+        <div class="hero-breadcrumb">AS Level → <span onclick="goHome()">All Topics</span> → <span>Cognitive Psychology</span></div>
+        <h1>Cognitive <em>Psychology</em></h1>
+        <p class="hero-desc">Memory models, schema theory, and reconstructive memory — how we encode, store, and retrieve information, and why our memories are fallible.</p>
+        <div class="hero-chips"><span class="chip">Edexcel Spec</span><span class="chip">AS Level</span><span class="chip accent">3 Key Studies</span><span class="chip">Methods</span><span class="chip">Worked Answers</span></div>
+      </div>
+      <div class="progress-bar">
+        <div class="prog-item done" onclick="showSection('c','content')"><div class="prog-dot"></div><span class="prog-label">Content</span></div>
+        <div class="prog-item current" onclick="showSection('c','studies')"><div class="prog-dot"></div><span class="prog-label">Studies</span></div>
+        <div class="prog-item" onclick="showSection('c','methods')"><div class="prog-dot"></div><span class="prog-label">Methods</span></div>
+        <div class="prog-item" onclick="showSection('c','exam')"><div class="prog-dot"></div><span class="prog-label">Exam Skills</span></div>
+      </div>
+
+      <!-- COGNITIVE CONTENT -->
+      <div class="content-section visible" id="c-content"><div class="content">
+        <div class="section-eyebrow">Content — Memory Models</div>
+        <h2 class="section-title">The Multi-Store Model <em>(Atkinson & Shiffrin, 1968)</em></h2>
+        <p class="section-intro">The multi-store model (MSM) proposes that memory consists of three separate stores: the sensory register, short-term memory, and long-term memory — each with distinct characteristics and processes.</p>
+        <div class="def-box"><div class="def-label">Core Model</div><div class="def-text">Information flows from the environment into the <strong>sensory register</strong>, then via <strong>attention</strong> into <strong>short-term memory (STM)</strong>, then via <strong>rehearsal</strong> into <strong>long-term memory (LTM)</strong>. Each store differs in capacity, duration, and encoding.</div></div>
+        <div class="card-grid">
+          <div class="card"><div class="card-label">Sensory Register</div><div class="card-title">First store</div><div class="card-body"><strong>Capacity:</strong> Very large (all sensory input).<br><strong>Duration:</strong> Very brief (¼–½ second).<br><strong>Encoding:</strong> Modality-specific (visual, auditory etc.).<br>Information is lost through <em>decay</em> unless attended to.</div></div>
+          <div class="card"><div class="card-label">Short-Term Memory</div><div class="card-title">Working store</div><div class="card-body"><strong>Capacity:</strong> 7 ± 2 chunks (Miller, 1956).<br><strong>Duration:</strong> 15–30 seconds without rehearsal.<br><strong>Encoding:</strong> Primarily acoustic (Conrad, 1964).<br>Lost through <em>displacement</em> or <em>decay</em>.</div></div>
+          <div class="card"><div class="card-label">Long-Term Memory</div><div class="card-title">Permanent store</div><div class="card-body"><strong>Capacity:</strong> Unlimited.<br><strong>Duration:</strong> Potentially lifetime.<br><strong>Encoding:</strong> Primarily semantic (meaning-based).<br>Includes episodic, semantic, and procedural memory.</div></div>
+        </div>
+        <h4 style="font-family:'Lora',serif;font-size:1rem;font-weight:600;margin:1.5rem 0 .6rem;color:var(--ink)">Evaluation of the MSM</h4>
+        <table class="eval-table"><thead><tr><th style="width:13%">Type</th><th>Point</th><th>Elaboration</th></tr></thead><tbody>
+          <tr class="strength"><td>✓ Strength</td><td>Supporting case study evidence</td><td>Patient HM (Milner, 1957) had his hippocampus removed and could form no new LTMs but retained intact STM — supporting the distinction between stores.</td></tr>
+          <tr class="strength"><td>✓ Strength</td><td>Serial position effect</td><td>Research shows better recall for first (primacy — LTM) and last (recency — STM) items in a list, consistent with two separate stores.</td></tr>
+          <tr class="weakness"><td>✗ Weakness</td><td>Oversimplifies STM</td><td>Shallice & Warrington (1970): patient KF had impaired verbal STM but intact visual STM — suggesting STM is not a single unitary store.</td></tr>
+          <tr class="weakness"><td>✗ Weakness</td><td>Passive rehearsal model</td><td>Craik & Lockhart (1972): depth of processing (not just rehearsal) determines LTM — the MSM overemphasises maintenance rehearsal.</td></tr>
+        </tbody></table>
+
+        <div class="divider"></div>
+
+        <h2 class="section-title">The Working Memory Model <em>(Baddeley & Hitch, 1974)</em></h2>
+        <p class="section-intro">The WMM replaced the unitary STM store with a multi-component system that actively processes and manipulates information, not just holds it passively.</p>
+        <div class="card-grid">
+          <div class="card"><div class="card-label">Component 1</div><div class="card-title">Central Executive</div><div class="card-body">The 'boss' — allocates attention and coordinates the slave systems. Has limited capacity. Does not store information directly. Responsible for planning, decision-making, and switching attention.</div></div>
+          <div class="card"><div class="card-label">Component 2</div><div class="card-title">Phonological Loop</div><div class="card-body">Handles verbal/auditory information. Split into the <em>phonological store</em> (inner ear — holds sounds for ~2 seconds) and <em>articulatory control process</em> (inner voice — rehearses sounds). Explains the word length effect.</div></div>
+          <div class="card"><div class="card-label">Component 3</div><div class="card-title">Visuo-spatial Sketchpad</div><div class="card-body">The 'inner eye' — processes and stores visual and spatial information. Has limited capacity. Baddeley (1975): glass half full task shows it is separate from the phonological loop.</div></div>
+          <div class="card"><div class="card-label">Component 4</div><div class="card-title">Episodic Buffer</div><div class="card-body">Added by Baddeley (2000). A temporary store linking information from the slave systems and LTM into a single episode. Explains how we combine information from multiple sources coherently.</div></div>
+        </div>
+        <div class="tip-box"><div class="tip-label">💡 Exam Tip — Dual Task Studies</div><div class="tip-text">A key strength of the WMM is support from dual-task studies: performing two tasks using the same component leads to interference (e.g. two visual tasks), but two tasks using different components do not. This provides direct evidence for the separate slave systems. Always mention this when evaluating the WMM.</div></div>
+        <div class="er-box"><div class="er-label">📋 Examiner Report</div><div class="er-text">Students frequently confuse the phonological store with the articulatory control process, or omit the episodic buffer entirely. The best answers describe all four components with their specific functions. The central executive is often described vaguely as 'controlling' — be precise: it allocates attentional resources.</div></div>
+
+        <div class="divider"></div>
+
+        <h2 class="section-title">Reconstructive Memory <em>(Bartlett, 1932)</em></h2>
+        <p class="section-intro">Bartlett proposed that memory is not a passive recording but an active, reconstructive process influenced by existing knowledge, expectations, and cultural schemas.</p>
+        <div class="def-box"><div class="def-label">Schema Theory</div><div class="def-text">A <strong>schema</strong> is a mental framework of existing knowledge and expectations built up through experience. When encoding or retrieving memories, we use schemas to fill in gaps, making memory prone to distortion — particularly for unfamiliar or schema-inconsistent material.</div></div>
+        <p class="body-text">Bartlett's classic study used the Native American folk tale <em>The War of the Ghosts</em>. British participants repeatedly reproduced the story, and Bartlett found that they systematically <strong>rationalised</strong> unfamiliar elements (e.g. canoes became boats), <strong>omitted</strong> schema-inconsistent details, and <strong>distorted</strong> information to fit their own cultural expectations.</p>
+        <p class="body-text">This suggests that LTM is <strong>reconstructive</strong> rather than reproductive — we do not recall a perfect copy but actively rebuild memories using schemas at the point of retrieval.</p>
+        <div class="tip-box"><div class="tip-label">💡 Real-World Application — EWT</div><div class="tip-text">Reconstructive memory has major implications for eyewitness testimony (EWT). If memory is schema-driven, witnesses may unconsciously fill gaps with expectations rather than facts — particularly under stress or when identifying faces from a different ethnic group (cross-race effect). Loftus & Palmer's (1974) post-event misinformation research directly supports this.</div></div>
+        <div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
+          <div class="card"><div class="card-label">Error Type 1</div><div class="card-title">Rationalisation</div><div class="card-body">Schema-inconsistent elements are changed to fit existing knowledge. E.g. 'canoe' → 'boat'.</div></div>
+          <div class="card"><div class="card-label">Error Type 2</div><div class="card-title">Omission</div><div class="card-body">Details that don't fit the schema are dropped from recall entirely.</div></div>
+          <div class="card"><div class="card-label">Error Type 3</div><div class="card-title">Distortion</div><div class="card-body">Details are altered to make the memory more coherent or culturally familiar.</div></div>
+          <div class="card"><div class="card-label">Error Type 4</div><div class="card-title">Confabulation</div><div class="card-body">Details are added that were never there — invented to fill gaps and create a plausible narrative.</div></div>
+        </div>
+      </div></div>
+
+      <!-- COGNITIVE STUDIES -->
+      <div class="content-section" id="c-studies"><div class="content">
+        <div class="section-eyebrow">Key Studies</div>
+        <h2 class="section-title">Core <em>Studies</em></h2>
+        <p class="section-intro">The three studies below are named in the Edexcel spec. Bartlett is the classic study; Schmolck and Sacchi are the contemporary studies.</p>
+
+        <div class="study-card open">
+          <div class="study-header" onclick="toggleStudy(this)"><div><div class="study-meta">Classic Study — Reconstructive Memory</div><div class="study-name">Bartlett (1932) — Remembering: A Study in Experimental and Social Psychology</div></div><span class="study-toggle">+</span></div>
+          <div class="study-body">
+            <div class="study-row"><div class="study-row-label">Aim</div><div class="study-row-val">To investigate how memory is affected by prior knowledge and cultural schemas when recalling an unfamiliar story.</div></div>
+            <div class="study-row"><div class="study-row-label">Sample</div><div class="study-row-val">British participants; number not precisely specified. Used serial reproduction (same participants recalled repeatedly) and repeated reproduction methods.</div></div>
+            <div class="study-row"><div class="study-row-label">Procedure</div><div class="study-row-val">Participants read 'The War of the Ghosts' — a Native American folk tale with unfamiliar cultural themes. They were asked to recall it after various intervals (from 15 minutes to several years).</div></div>
+            <div class="study-row"><div class="study-row-label">Results</div><div class="study-row-val">Recalls became progressively shorter and more distorted. Cultural rationalisations were common (e.g. 'canoes' → 'boats'). Schema-inconsistent supernatural elements were omitted or made more familiar. Stories became more coherent but less accurate.</div></div>
+            <div class="study-row"><div class="study-row-label">Conclusion</div><div class="study-row-val">Memory is reconstructive, not reproductive — it is influenced by prior knowledge (schemas). We distort memories to fit our existing understanding of the world.</div></div>
+            <h4 style="margin:1.2rem 0 .5rem;font-size:.78rem;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Evaluation</h4>
+            <table class="eval-table"><thead><tr><th style="width:13%">Type</th><th>Point</th><th>Elaboration</th></tr></thead><tbody>
+              <tr class="strength"><td>✓ Strength</td><td>Real-world application</td><td>Findings directly apply to EWT reliability and clinical interviews. Understanding schema-driven distortion has influenced how police gather witness statements.</td></tr>
+              <tr class="strength"><td>✓ Strength</td><td>Ecological validity</td><td>Recalled a meaningful narrative rather than meaningless syllables — more like real-life memory use than lab-based word list studies.</td></tr>
+              <tr class="weakness"><td>✗ Weakness</td><td>Lack of experimental control</td><td>No standardised procedure; varied time intervals; no control group. Hard to establish cause and effect or replicate precisely.</td></tr>
+              <tr class="weakness"><td>✗ Weakness</td><td>Demand characteristics</td><td>Participants knew they were being tested on memory — may have guessed the aim and altered behaviour accordingly, reducing validity.</td></tr>
+            </tbody></table>
+            <div class="er-box" style="margin-top:1rem"><div class="er-label">📋 Examiner Report</div><div class="er-text">Students often describe Bartlett's findings correctly but then fail to link them to schema theory in evaluation. The key claim is not just that memories change — it's that they change in systematic, schema-consistent ways. This specificity is what earns the higher AO3 marks.</div></div>
+          </div>
+        </div>
+
+        <div class="study-card">
+          <div class="study-header" onclick="toggleStudy(this)"><div><div class="study-meta">Contemporary Study — Long-Term Memory</div><div class="study-name">Schmolck et al. (2002) — Semantic Knowledge in Patient HM and Organic Amnesia</div></div><span class="study-toggle">+</span></div>
+          <div class="study-body">
+            <div class="study-row"><div class="study-row-label">Aim</div><div class="study-row-val">To investigate the role of the hippocampus in semantic and episodic memory by studying patients with hippocampal damage.</div></div>
+            <div class="study-row"><div class="study-row-label">Sample</div><div class="study-row-val">Patient HM (bilateral hippocampal removal) and a control group of patients with varying degrees of hippocampal damage assessed via MRI.</div></div>
+            <div class="study-row"><div class="study-row-label">Procedure</div><div class="study-row-val">Semantic memory tested using picture naming tasks, category naming, and vocabulary tests. Episodic memory tested using recall of personal events. Damage extent quantified via MRI.</div></div>
+            <div class="study-row"><div class="study-row-label">Results</div><div class="study-row-val">HM showed severely impaired episodic memory but surprisingly intact semantic knowledge for material learned before surgery. Patients with more extensive hippocampal damage showed greater semantic memory impairment. Damage extended to adjacent cortex worsened semantic deficits.</div></div>
+            <div class="study-row"><div class="study-row-label">Conclusion</div><div class="study-row-val">The hippocampus is critical for episodic memory and for acquiring new semantic memory. Semantic memory already consolidated before damage may be stored in neocortex independently of the hippocampus.</div></div>
+            <div class="tip-box" style="margin-top:1rem"><div class="tip-label">💡 Link to MSM</div><div class="tip-text">Schmolck's findings support the MSM's distinction between STM and LTM: HM's STM was intact but he could not transfer new information to LTM — directly supporting the separate stores proposed by Atkinson & Shiffrin. Use this as AO3 evaluation of the MSM.</div></div>
+          </div>
+        </div>
+
+        <div class="study-card">
+          <div class="study-header" onclick="toggleStudy(this)"><div><div class="study-meta">Contemporary Study — Reconstructive Memory</div><div class="study-name">Sacchi et al. (2007) — Changing the Past: Misinformation Effects in Personal Autobiographical Memories</div></div><span class="study-toggle">+</span></div>
+          <div class="study-body">
+            <div class="study-row"><div class="study-row-label">Aim</div><div class="study-row-val">To investigate whether personal autobiographical memories can be distorted by post-event misinformation, specifically in the context of political events.</div></div>
+            <div class="study-row"><div class="study-row-label">Sample</div><div class="study-row-val">Approximately 100 Italian adults who had attended a political demonstration in 2001 (Genoa G8 summit protests).</div></div>
+            <div class="study-row"><div class="study-row-label">Procedure</div><div class="study-row-val">Participants were shown a manipulated photograph depicting the protest as more violent (larger crowd, more police presence) or as peaceful. They were then asked to recall their own memories of the event and rate its atmosphere.</div></div>
+            <div class="study-row"><div class="study-row-label">Results</div><div class="study-row-val">Participants shown the manipulated violent image reported remembering the event as more violent and confrontational than those shown the peaceful image or no image — even though they had personally attended. Memory confidence was not reduced despite distortion.</div></div>
+            <div class="study-row"><div class="study-row-label">Conclusion</div><div class="study-row-val">Autobiographical memories are vulnerable to post-event misinformation, supporting a reconstructive model of memory. Even vivid personal memories can be altered by subsequent visual information.</div></div>
+            <div class="er-box" style="margin-top:1rem"><div class="er-label">📋 Examiner Report</div><div class="er-text">Sacchi is often confused with Loftus & Palmer. The key distinction: Sacchi used <em>autobiographical</em> memory of a real personal event, not a lab-based video clip. This increases ecological validity but reduces experimental control. Always highlight this difference in evaluation — it's a rich AO3 point.</div></div>
+          </div>
+        </div>
+      </div></div>
+
+      <!-- COGNITIVE METHODS -->
+      <div class="content-section" id="c-methods"><div class="content">
+        <div class="section-eyebrow">Methods</div>
+        <h2 class="section-title">Research Methods in <em>Cognitive Psychology</em></h2>
+        <p class="section-intro">Edexcel requires knowledge of experimental methods, designs, variables, hypotheses, controls, validity, and reliability in the context of cognitive psychology research.</p>
+        <h3 class="sub-heading">Experimental Methods</h3>
+        <div class="card-grid">
+          <div class="card"><div class="card-label">Lab Experiment</div><div class="card-title">Controlled environment</div><div class="card-body">Conducted in a controlled artificial setting. High internal validity — IV can be manipulated while extraneous variables are controlled. Low ecological validity. Example: Baddeley's dual-task studies.</div></div>
+          <div class="card"><div class="card-label">Field Experiment</div><div class="card-title">Natural setting</div><div class="card-body">Conducted in a natural environment with IV deliberately manipulated. Higher ecological validity than lab. Less control over extraneous variables. Example: testing memory in real-world contexts.</div></div>
+          <div class="card"><div class="card-label">Natural Experiment</div><div class="card-title">Pre-existing IV</div><div class="card-body">IV occurs naturally; researcher does not manipulate it. High ecological validity. Cannot infer causation — no random allocation. Example: comparing HM's memory to healthy controls.</div></div>
+          <div class="card"><div class="card-label">Quasi-Experiment</div><div class="card-title">Pre-existing groups</div><div class="card-body">Groups based on pre-existing characteristics (e.g. age, gender, amnesiac vs. control). Cannot randomly allocate. Common in neuropsychological memory research.</div></div>
+        </div>
+
+        <h3 class="sub-heading">Experimental Designs</h3>
+        <table class="spec-table"><thead><tr><th>Design</th><th>How it works</th><th>Strength</th><th>Weakness</th></tr></thead><tbody>
+          <tr><td><strong>Independent Groups</strong></td><td>Different participants in each condition.</td><td>No order effects; no demand characteristics from repeated testing.</td><td>Participant variables — groups may differ; needs more participants.</td></tr>
+          <tr><td><strong>Repeated Measures</strong></td><td>Same participants in all conditions.</td><td>Eliminates participant variables; fewer participants needed.</td><td>Order effects (practice/fatigue); demand characteristics.</td></tr>
+          <tr><td><strong>Matched Pairs</strong></td><td>Participants matched on key variables, then split.</td><td>Controls participant variables; no order effects.</td><td>Time-consuming to match; impossible to control all variables.</td></tr>
+        </tbody></table>
+
+        <h3 class="sub-heading">Variables & Hypotheses</h3>
+        <div class="methods-grid">
+          <div class="method-card"><div class="method-title">Types of Variable</div><div class="method-body"><strong>Independent Variable (IV):</strong> The variable the researcher manipulates.<br><strong>Dependent Variable (DV):</strong> The variable that is measured.<br><strong>Extraneous Variable (EV):</strong> Any variable other than the IV that may affect the DV.<br><strong>Confounding Variable:</strong> An EV that has actually varied systematically with the IV, threatening internal validity.</div></div>
+          <div class="method-card"><div class="method-title">Hypotheses</div><div class="method-body"><strong>Directional (one-tailed):</strong> Predicts the direction of the difference or relationship. Used when prior research strongly suggests an outcome.<br><br><strong>Non-directional (two-tailed):</strong> Predicts a difference or relationship but not its direction. Used when evidence is limited or mixed.</div></div>
+        </div>
+
+        <h3 class="sub-heading">Validity & Reliability</h3>
+        <div class="methods-grid">
+          <div class="method-card"><div class="method-title">Validity</div><div class="method-body"><strong>Internal validity:</strong> Does the study measure what it claims to? Threatened by confounding variables, demand characteristics, social desirability.<br><br><strong>External validity:</strong> Can findings generalise? Includes ecological validity (real-world applicability) and population validity (generalisability across people).</div></div>
+          <div class="method-card"><div class="method-title">Reliability</div><div class="method-body"><strong>Internal reliability:</strong> Consistency within the measure itself (e.g. all items on a test measuring the same thing).<br><br><strong>External reliability:</strong> Consistency across time and researchers — can the study be replicated with the same results? Assessed via test-retest and inter-rater reliability.</div></div>
+        </div>
+        <div class="tip-box"><div class="tip-label">💡 Exam Tip — Validity vs Reliability</div><div class="tip-text">A measure can be reliable without being valid (e.g. consistently measuring the wrong thing), but a valid measure must also be reliable. In the exam, always specify <em>which type</em> of validity or reliability you are discussing — generic use of the terms earns minimal marks.</div></div>
+      </div></div>
+
+      <!-- COGNITIVE EXAM -->
+      <div class="content-section" id="c-exam"><div class="content">
+        <div class="section-eyebrow">Exam Skills</div>
+        <h2 class="section-title">Worked Answers & <em>Examiner Tips</em></h2>
+        <p class="section-intro">Fully worked sample answers for Cognitive Psychology question types, annotated with AO1/AO2/AO3.</p>
+        <h3 class="sub-heading">4-Mark — Describe</h3>
+        <div class="wa-wrap">
+          <div class="wa-topbar"><span class="wa-tag">Working Memory Model</span><span class="wa-marks">4 marks · AO1</span></div>
+          <div class="wa-question">"Describe the working memory model." [4 marks]</div>
+          <div class="wa-body">
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Central executive:</strong> The WMM (Baddeley & Hitch, 1974) proposes that STM is a multi-component active processing system. The <em>central executive</em> is the attentional controller — it allocates resources to the slave systems but has limited capacity and does not store information.</span></div>
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Slave systems:</strong> The <em>phonological loop</em> handles verbal/auditory information (split into the phonological store and articulatory process); the <em>visuo-spatial sketchpad</em> processes visual and spatial information.</span></div>
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Episodic buffer:</strong> Added by Baddeley (2000), the <em>episodic buffer</em> is a temporary store that integrates information from the slave systems and LTM into a single coherent episode. It has limited capacity and is controlled by the central executive.</span></div>
+          </div>
+          <div class="wa-footer"><span>AO1 × 3 → 4 marks</span><span>All four components named and described with specific functions.</span></div>
+        </div>
+        <div class="er-box"><div class="er-label">📋 Examiner Report</div><div class="er-text">Students regularly omit the episodic buffer (added 2000) and lose marks. Also common: describing the phonological loop as one unit — the distinction between the <em>phonological store</em> and <em>articulatory process</em> is creditworthy detail.</div></div>
+        <h3 class="sub-heading">8-Mark — Outline & Evaluate</h3>
+        <div class="wa-wrap">
+          <div class="wa-topbar"><span class="wa-tag">Reconstructive Memory</span><span class="wa-marks">8 marks · AO1 + AO3</span></div>
+          <div class="wa-question">"Outline and evaluate the concept of reconstructive memory." [8 marks]</div>
+          <div class="wa-body">
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Bartlett's theory:</strong> Bartlett (1932) proposed that memory is not a passive record but an active reconstructive process. We use <em>schemas</em> — mental frameworks built from prior experience — to fill in gaps and make sense of new information, making memory prone to systematic distortion.</span></div>
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>War of the Ghosts:</strong> Bartlett demonstrated this using 'The War of the Ghosts' — British participants rationalised culturally unfamiliar elements, omitted schema-inconsistent details, and distorted the story to fit their own knowledge over repeated recalls.</span></div>
+            <div class="wa-step"><span class="wa-ao ao3">AO3</span><span class="wa-step-text"><strong>Supporting evidence:</strong> Sacchi et al. (2007) found that participants who had personally attended the Genoa G8 protests had their autobiographical memories distorted by a manipulated photograph — supporting the idea that even vivid personal memories are reconstructive and vulnerable to post-event misinformation.</span></div>
+            <div class="wa-step"><span class="wa-ao ao3">AO3</span><span class="wa-step-text"><strong>Real-world application:</strong> Reconstructive memory theory directly informs policy on eyewitness testimony. If memory is schema-driven, leading questions (as studied by Loftus & Palmer, 1974) can systematically alter what witnesses report — with serious implications for justice.</span></div>
+            <div class="wa-step"><span class="wa-ao ao3">AO3</span><span class="wa-step-text"><strong>Methodological criticism:</strong> Bartlett's original study lacked standardised procedures and precise participant numbers, making it difficult to replicate or establish cause and effect. The schema concept itself is also difficult to operationalise and test scientifically.</span></div>
+          </div>
+          <div class="wa-footer"><span>AO1 × 4 + AO3 × 4 = 8 marks</span><span>2 AO1 paragraphs, 3 developed AO3 points. Band 4.</span></div>
+        </div>
+        <div class="tip-box"><div class="tip-label">💡 Cognitive Psychology — Key Exam Themes</div><div class="tip-text">The most frequently examined themes in Cognitive Psychology are: (1) MSM vs WMM comparison, (2) evaluating reconstructive memory with reference to EWT, and (3) methodology questions about laboratory experiments and validity. Always have a prepared evaluation of both memory models that can be applied flexibly.</div></div>
+      </div></div>
+    </main>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE 4: BIOLOGICAL PSYCHOLOGY
+═══════════════════════════════════════════ -->
+<div class="page" id="page-biological">
+  <nav class="topbar">
+    <span class="topbar-logo" onclick="goHome()"><span>Psych</span>Edge</span>
+    <span class="topbar-sep">›</span><span class="topbar-crumb" onclick="goHome()">AS Level</span>
+    <span class="topbar-sep">›</span><span class="topbar-crumb active">Biological Psychology</span>
+    <div class="topbar-right">
+      <button class="pill-nav active" onclick="showSection('b','content')">Content</button>
+      <button class="pill-nav" onclick="showSection('b','studies')">Studies</button>
+      <button class="pill-nav" onclick="showSection('b','methods')">Methods</button>
+      <button class="pill-nav" onclick="showSection('b','exam')">Exam Skills</button>
+    </div>
+  </nav>
+  <div class="tp-layout">
+    <aside class="sidebar">
+      <div class="sidebar-section"><div class="sidebar-heading">Content</div>
+        <a class="sidebar-link active" onclick="showSection('b','content')"><span class="sidebar-dot"></span>CNS & Neurotransmission</a>
+        <a class="sidebar-sub">The Brain</a><a class="sidebar-sub">Neurons & Synapses</a><a class="sidebar-sub">Neurotransmitters</a>
+        <a class="sidebar-link" onclick="showSection('b','content')"><span class="sidebar-dot"></span>Brain Function & Aggression</a>
+        <a class="sidebar-sub">Limbic System</a><a class="sidebar-sub">Brain Areas & Aggression</a>
+        <a class="sidebar-link" onclick="showSection('b','content')"><span class="sidebar-dot"></span>Hormones, Genes & Aggression</a>
+        <a class="sidebar-sub">Testosterone</a><a class="sidebar-sub">Genetic Explanations</a>
+        <a class="sidebar-link" onclick="showSection('b','content')"><span class="sidebar-dot"></span>Biological Rhythms</a>
+        <a class="sidebar-sub">Circadian Rhythms</a><a class="sidebar-sub">Infradian Rhythms</a>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-heading">Studies</div>
+        <a class="sidebar-link" onclick="showSection('b','studies')"><span class="sidebar-dot"></span>Raine et al. (1997)</a>
+        <a class="sidebar-link" onclick="showSection('b','studies')"><span class="sidebar-dot"></span>Brendgen et al. (2005)</a>
+        <a class="sidebar-link" onclick="showSection('b','studies')"><span class="sidebar-dot"></span>McDermott et al. (2008)</a>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-heading">Methods</div>
+        <a class="sidebar-link" onclick="showSection('b','methods')"><span class="sidebar-dot"></span>Correlational Research</a>
+        <a class="sidebar-link" onclick="showSection('b','methods')"><span class="sidebar-dot"></span>Scanning Techniques</a>
+        <a class="sidebar-link" onclick="showSection('b','methods')"><span class="sidebar-dot"></span>Twin Studies</a>
+        <a class="sidebar-link" onclick="showSection('b','methods')"><span class="sidebar-dot"></span>Spearman's Rank</a>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-heading">Exam Skills</div>
+        <a class="sidebar-link" onclick="showSection('b','exam')"><span class="sidebar-dot"></span>Worked Answers</a>
+      </div>
+    </aside>
+    <main class="tp-main">
+      <div class="page-hero">
+        <div class="hero-breadcrumb">AS Level → <span onclick="goHome()">All Topics</span> → <span>Biological Psychology</span></div>
+        <h1>Biological <em>Psychology</em></h1>
+        <p class="hero-desc">The nervous system, neurotransmission, brain function, aggression, hormones, genes, and biological rhythms — the biological bases of behaviour.</p>
+        <div class="hero-chips"><span class="chip">Edexcel Spec</span><span class="chip">AS Level</span><span class="chip accent">3 Key Studies</span><span class="chip">Methods</span><span class="chip">Worked Answers</span></div>
+      </div>
+      <div class="progress-bar">
+        <div class="prog-item done" onclick="showSection('b','content')"><div class="prog-dot"></div><span class="prog-label">Content</span></div>
+        <div class="prog-item current" onclick="showSection('b','studies')"><div class="prog-dot"></div><span class="prog-label">Studies</span></div>
+        <div class="prog-item" onclick="showSection('b','methods')"><div class="prog-dot"></div><span class="prog-label">Methods</span></div>
+        <div class="prog-item" onclick="showSection('b','exam')"><div class="prog-dot"></div><span class="prog-label">Exam Skills</span></div>
+      </div>
+
+      <!-- BIOLOGICAL CONTENT -->
+      <div class="content-section visible" id="b-content"><div class="content">
+        <div class="section-eyebrow">Content — CNS & Neurotransmission</div>
+        <h2 class="section-title">The Nervous System & <em>Neurotransmission</em></h2>
+        <p class="section-intro">The biological approach assumes that behaviour is controlled by biological structures and processes. Understanding the nervous system and how neurons communicate is foundational to the topic.</p>
+        <div class="def-box"><div class="def-label">The Central Nervous System (CNS)</div><div class="def-text">The CNS consists of the <strong>brain</strong> and <strong>spinal cord</strong>. It receives sensory information, processes it, and sends motor commands. It is divided into the central (brain + spinal cord) and peripheral nervous systems (somatic + autonomic).</div></div>
+        <div class="card-grid">
+          <div class="card"><div class="card-label">Neuron Type 1</div><div class="card-title">Sensory Neurons</div><div class="card-body">Carry nerve impulses from sense organs toward the CNS. Have long dendrites, short axons. Respond to stimuli such as light, touch, and sound.</div></div>
+          <div class="card"><div class="card-label">Neuron Type 2</div><div class="card-title">Motor Neurons</div><div class="card-body">Carry nerve impulses from the CNS to effectors (muscles and glands). Have short dendrites, long axons. Control voluntary and involuntary movement.</div></div>
+          <div class="card"><div class="card-label">Neuron Type 3</div><div class="card-title">Relay Neurons</div><div class="card-body">Found in the CNS — connect sensory and motor neurons. Process and integrate incoming and outgoing signals. Responsible for reflex arcs.</div></div>
+        </div>
+        <h3 class="sub-heading">Synaptic Transmission</h3>
+        <p class="body-text">When an action potential reaches the axon terminal, it triggers the release of <strong>neurotransmitters</strong> from synaptic vesicles into the <strong>synaptic cleft</strong>. These bind to receptor sites on the post-synaptic neuron. If excitatory neurotransmitters cause sufficient depolarisation, a new action potential is fired (excitatory postsynaptic potential, EPSP). Inhibitory neurotransmitters prevent firing (IPSP).</p>
+        <div class="card-grid">
+          <div class="card"><div class="card-label">Neurotransmitter 1</div><div class="card-title">Serotonin</div><div class="card-body">Regulates mood, appetite, and sleep. Low serotonin is associated with depression and aggression. SSRIs block its reuptake, increasing availability in the synapse.</div></div>
+          <div class="card"><div class="card-label">Neurotransmitter 2</div><div class="card-title">Dopamine</div><div class="card-body">Associated with reward, motivation, and movement. Excess dopamine activity linked to schizophrenia (dopamine hypothesis). Deficiency linked to Parkinson's disease.</div></div>
+          <div class="card"><div class="card-label">Neurotransmitter 3</div><div class="card-title">Noradrenaline</div><div class="card-body">Involved in the fight-or-flight response. Increases heart rate and alertness. Also plays a role in mood regulation — low levels associated with depression.</div></div>
+          <div class="card"><div class="card-label">Neurotransmitter 4</div><div class="card-title">GABA</div><div class="card-body">The main inhibitory neurotransmitter. Reduces neuronal excitability throughout the nervous system. Dysfunction linked to anxiety disorders. Benzodiazepines work by enhancing GABA activity.</div></div>
+        </div>
+        <div class="tip-box"><div class="tip-label">💡 Exam Tip — Excitatory vs Inhibitory</div><div class="tip-text">A common exam question asks you to distinguish between excitatory and inhibitory neurotransmitters. Key rule: excitatory NTs make the post-synaptic neuron more likely to fire (depolarise); inhibitory NTs make it less likely (hyperpolarise). Always link to a named neurotransmitter for full marks.</div></div>
+
+        <div class="divider"></div>
+
+        <div class="section-eyebrow">Content — Aggression</div>
+        <h2 class="section-title">Brain Function & <em>Aggression</em></h2>
+        <p class="section-intro">The biological approach explains aggression through brain structure, neurotransmitter activity, hormones, and genetic factors.</p>
+        <h3 class="sub-heading">Brain Areas & Aggression</h3>
+        <div class="card-grid">
+          <div class="card"><div class="card-label">Brain Area 1</div><div class="card-title">Amygdala</div><div class="card-body">Part of the limbic system — involved in processing emotions, especially fear and aggression. Stimulation of the amygdala in animals (Bard & Mountcastle, 1948) produces aggressive responses. Damage may reduce aggression.</div></div>
+          <div class="card"><div class="card-label">Brain Area 2</div><div class="card-title">Prefrontal Cortex (PFC)</div><div class="card-body">Regulates impulse control and decision-making. Damage to the PFC disinhibits aggression — famous case of Phineas Gage. Raine et al. (1997) found reduced PFC activity in murderers.</div></div>
+          <div class="card"><div class="card-label">Brain Area 3</div><div class="card-title">Hypothalamus</div><div class="card-body">Regulates the autonomic nervous system and hormonal responses. Stimulation of certain hypothalamic nuclei triggers aggression. Linked to testosterone and adrenaline release during conflict.</div></div>
+        </div>
+
+        <h3 class="sub-heading">Hormones, Genes & <em>Aggression</em></h3>
+        <div class="def-box"><div class="def-label">Testosterone & Aggression</div><div class="def-text">Testosterone is an androgen hormone produced primarily in the testes (and in smaller amounts in the adrenal glands). High testosterone levels are associated with increased aggression — supported by studies showing higher testosterone in violent offenders. However, the relationship is correlational, and causation cannot be established.</div></div>
+        <p class="body-text">The <strong>challenge hypothesis</strong> (Wingfield et al., 1990) proposes that testosterone rises in response to social challenges (e.g. competition, perceived threats), priming aggressive responses. This is more nuanced than a simple testosterone → aggression model.</p>
+        <div class="def-box"><div class="def-label">Genetic Explanations</div><div class="def-text">Twin studies suggest a genetic component to aggression. <strong>Concordance rates</strong> are higher in monozygotic (MZ) twins (~50–80%) than dizygotic (DZ) twins (~10–30%) for aggressive behaviour. The <strong>MAOA gene</strong> (monoamine oxidase A) has been linked to aggression — the 'warrior gene'. Low MAOA activity leads to excess serotonin, dopamine, and noradrenaline, potentially increasing aggressive responding.</div></div>
+        <div class="er-box"><div class="er-label">📋 Examiner Report</div><div class="er-text">Students often claim that genetics 'causes' aggression. The correct position is that genes may create a <em>predisposition</em> — not a deterministic outcome. Always acknowledge the gene-environment interaction: the MAOA gene is associated with aggression only when combined with adverse early environments (Caspi et al., 2002). This nuance is essential for high-band AO3.</div></div>
+
+        <div class="divider"></div>
+
+        <div class="section-eyebrow">Content — Biological Rhythms</div>
+        <h2 class="section-title">Circadian & Infradian <em>Rhythms</em></h2>
+        <p class="section-intro">Biological rhythms are cyclical patterns of physiological and behavioural change regulated by internal biological clocks and external zeitgebers (time-givers).</p>
+        <div class="card-grid">
+          <div class="card"><div class="card-label">Rhythm Type 1</div><div class="card-title">Circadian Rhythms</div><div class="card-body">Cycles of approximately 24 hours. Regulated by the <strong>suprachiasmatic nucleus (SCN)</strong> in the hypothalamus — the brain's master clock. Governed by light (main zeitgeber). Examples: sleep-wake cycle, core body temperature, cortisol release.</div></div>
+          <div class="card"><div class="card-label">Rhythm Type 2</div><div class="card-title">Infradian Rhythms</div><div class="card-body">Cycles longer than 24 hours. Examples: the menstrual cycle (~28 days), hibernation, seasonal affective disorder (SAD — annual). Regulated by hormones such as oestrogen and progesterone.</div></div>
+          <div class="card"><div class="card-label">Rhythm Type 3</div><div class="card-title">Ultradian Rhythms</div><div class="card-body">Cycles shorter than 24 hours. Example: the sleep cycle (~90 minutes) alternating between REM and NREM sleep. Also includes basic rest-activity cycle (BRAC) during waking hours.</div></div>
+        </div>
+        <h4 style="font-family:'Lora',serif;font-size:1rem;font-weight:600;margin:1.5rem 0 .6rem;color:var(--ink)">Endogenous Pacemakers vs Exogenous Zeitgebers</h4>
+        <table class="spec-table"><thead><tr><th>Factor</th><th>Role</th><th>Evidence</th></tr></thead><tbody>
+          <tr><td><strong>SCN (endogenous)</strong></td><td>Master biological clock — maintains circadian rhythm even without external cues. Receives direct input from the retina via the retinohypothalamic tract.</td><td>Morgan (1995): transplanting SCN cells with different circadian rhythms into hamsters changed their rhythm.</td></tr>
+          <tr><td><strong>Melatonin (endogenous)</strong></td><td>Released by the pineal gland in darkness. Promotes sleep onset. Regulated by the SCN — links light/dark cycle to sleep.</td><td>Sack et al. (2000): melatonin administration shifts circadian phase — used to treat jet lag.</td></tr>
+          <tr><td><strong>Light (exogenous)</strong></td><td>The primary zeitgeber. Light suppresses melatonin, resetting the SCN. Crucial for synchronising internal clock to the 24-hour day.</td><td>Siffre (1962): without light cues, free-ran to a ~25-hour cycle.</td></tr>
+          <tr><td><strong>Social cues (exogenous)</strong></td><td>Meal times, social interaction, and temperature act as secondary zeitgebers that fine-tune circadian rhythms.</td><td>Aschoff & Wever (1976): isolated participants shifted to ~25-hour cycles without social cues.</td></tr>
+        </tbody></table>
+      </div></div>
+
+      <!-- BIOLOGICAL STUDIES -->
+      <div class="content-section" id="b-studies"><div class="content">
+        <div class="section-eyebrow">Key Studies</div>
+        <h2 class="section-title">Core <em>Studies</em></h2>
+        <p class="section-intro">All three studies are named in the Edexcel spec. Raine et al. is the classic study; Brendgen and McDermott are the contemporary studies.</p>
+
+        <div class="study-card open">
+          <div class="study-header" onclick="toggleStudy(this)"><div><div class="study-meta">Classic Study — Brain & Aggression</div><div class="study-name">Raine et al. (1997) — Brain Abnormalities in Murderers Indicated by Positron Emission Tomography</div></div><span class="study-toggle">+</span></div>
+          <div class="study-body">
+            <div class="study-row"><div class="study-row-label">Aim</div><div class="study-row-val">To investigate whether murderers pleading not guilty by reason of insanity (NGRI) show different brain activity compared to non-murderers using PET scanning.</div></div>
+            <div class="study-row"><div class="study-row-label">Sample</div><div class="study-row-val">41 NGRI murderers (39 male, 2 female) matched with 41 controls on age and sex. 6 NGRI participants had schizophrenia; controls matched accordingly.</div></div>
+            <div class="study-row"><div class="study-row-label">Procedure</div><div class="study-row-val">Participants injected with FDG (radioactive glucose tracer) and completed a continuous performance task (CPT) for 32 minutes. PET scans were taken to measure glucose metabolism in 14 brain areas. Quasi-experimental design — IV was murderer/non-murderer status (pre-existing).</div></div>
+            <div class="study-row"><div class="study-row-label">Results</div><div class="study-row-val">NGRI murderers showed: reduced glucose metabolism in the <strong>prefrontal cortex</strong>, <strong>parietal cortex</strong>, and <strong>corpus callosum</strong>; abnormal asymmetry in the <strong>amygdala</strong>, <strong>thalamus</strong>, and <strong>hippocampus</strong> (left side lower than right). No difference in occipital cortex.</div></div>
+            <div class="study-row"><div class="study-row-label">Conclusion</div><div class="study-row-val">Brain dysfunction in areas associated with impulse control, emotional regulation, and integration of information may predispose some individuals to violent behaviour. However, this does not directly cause murder.</div></div>
+            <h4 style="margin:1.2rem 0 .5rem;font-size:.78rem;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Evaluation</h4>
+            <table class="eval-table"><thead><tr><th style="width:13%">Type</th><th>Point</th><th>Elaboration</th></tr></thead><tbody>
+              <tr class="strength"><td>✓ Strength</td><td>Objective brain imaging</td><td>PET scans provide objective, quantitative data on brain activity — avoids observer bias and social desirability issues present in self-report methods.</td></tr>
+              <tr class="strength"><td>✓ Strength</td><td>Well-matched sample</td><td>Careful matching on age, sex, and schizophrenia status strengthens the comparison and reduces confounding variables.</td></tr>
+              <tr class="weakness"><td>✗ Weakness</td><td>Cannot establish causation</td><td>Quasi-experiment — no random allocation. The brain differences may have existed before any violent behaviour; alternatively, prison or medication may have caused them.</td></tr>
+              <tr class="weakness"><td>✗ Weakness</td><td>Ethical concerns</td><td>Findings could be misused to argue for biological determinism — that some people are 'born killers'. Raine himself warns against this interpretation.</td></tr>
+              <tr class="weakness"><td>✗ Weakness</td><td>Limited generalisability</td><td>Sample consisted only of NGRI murderers — a highly specific group. Findings cannot generalise to all violent offenders or the general population.</td></tr>
+            </tbody></table>
+            <div class="er-box" style="margin-top:1rem"><div class="er-label">📋 Examiner Report</div><div class="er-text">Students often describe Raine's findings as proving that murderers have abnormal brains that 'cause' violence. This is a deterministic overstatement — always qualify: the brain differences are associated with, not causally responsible for, violent behaviour. The NGRI sample is also crucial context — these are not typical murderers.</div></div>
+          </div>
+        </div>
+
+        <div class="study-card">
+          <div class="study-header" onclick="toggleStudy(this)"><div><div class="study-meta">Contemporary Study — Genetics & Aggression</div><div class="study-name">Brendgen et al. (2005) — Examining Genetic and Environmental Effects on Social Aggression</div></div><span class="study-toggle">+</span></div>
+          <div class="study-body">
+            <div class="study-row"><div class="study-row-label">Aim</div><div class="study-row-val">To investigate the relative contributions of genetic and environmental factors to two types of aggression: physical aggression and social (relational) aggression.</div></div>
+            <div class="study-row"><div class="study-row-label">Sample</div><div class="study-row-val">234 twin pairs (identical MZ and non-identical DZ), mean age 6 years, drawn from the Quebec Newborn Twin Study. Both same-sex and opposite-sex DZ pairs included.</div></div>
+            <div class="study-row"><div class="study-row-label">Procedure</div><div class="study-row-val">Aggression rated by teachers and peers. Physical aggression: hitting, kicking, biting. Social aggression: excluding peers, spreading rumours, threatening to withdraw friendship. Twin design compared concordance rates between MZ and DZ pairs.</div></div>
+            <div class="study-row"><div class="study-row-label">Results</div><div class="study-row-val"><strong>Physical aggression:</strong> MZ concordance significantly higher than DZ — strong genetic contribution (~50–60%). <strong>Social aggression:</strong> DZ concordance was similar to MZ — suggesting shared environment (not genes) was the primary influence.</div></div>
+            <div class="study-row"><div class="study-row-label">Conclusion</div><div class="study-row-val">Physical and social aggression have different aetiologies. Physical aggression has a stronger genetic basis; social aggression is more environmentally determined. This challenges single-cause biological explanations of aggression.</div></div>
+            <div class="tip-box" style="margin-top:1rem"><div class="tip-label">💡 Exam Tip — Using Brendgen</div><div class="tip-text">Brendgen is an excellent study to use when evaluating biological explanations of aggression — it shows that the relationship between genes and aggression is not straightforward. Physical and social aggression have <em>different</em> genetic bases, which challenges any single biological theory. Use it as a nuanced AO3 evaluation point.</div></div>
+          </div>
+        </div>
+
+        <div class="study-card">
+          <div class="study-header" onclick="toggleStudy(this)"><div><div class="study-meta">Contemporary Study — Genes & Aggression</div><div class="study-name">McDermott et al. (2008) — Monoamine Oxidase A Gene (MAOA) Predicts Behavioural Aggression</div></div><span class="study-toggle">+</span></div>
+          <div class="study-body">
+            <div class="study-row"><div class="study-row-label">Aim</div><div class="study-row-val">To investigate whether MAOA gene variants predict aggressive behaviour under conditions of provocation in a laboratory setting.</div></div>
+            <div class="study-row"><div class="study-row-label">Sample</div><div class="study-row-val">Approximately 78 male participants genotyped for MAOA variants (MAOA-L = low activity; MAOA-H = high activity).</div></div>
+            <div class="study-row"><div class="study-row-label">Procedure</div><div class="study-row-val">Participants played a trust game where they could be cheated by a partner (provocation condition) or not cheated (no-provocation control). Aggression was measured by how much hot sauce participants chose to administer to the partner who had cheated them.</div></div>
+            <div class="study-row"><div class="study-row-label">Results</div><div class="study-row-val">MAOA-L participants showed significantly more aggressive behaviour (more hot sauce) than MAOA-H participants in the provocation condition. No significant difference between genotype groups in the no-provocation condition.</div></div>
+            <div class="study-row"><div class="study-row-label">Conclusion</div><div class="study-row-val">The MAOA gene moderates aggressive responses to provocation. MAOA-L confers a predisposition to aggression specifically when provoked — supporting a gene-environment interaction model rather than simple genetic determinism.</div></div>
+            <div class="er-box" style="margin-top:1rem"><div class="er-label">📋 Examiner Report</div><div class="er-text">When evaluating McDermott, students often overlook the key finding: MAOA-L only predicted aggression <em>under provocation</em>. This is a crucial nuance — it supports interactionist (not determinist) biological psychology. Also note the 'hot sauce' measure is indirect and arguably lacks mundane realism.</div></div>
+          </div>
+        </div>
+      </div></div>
+
+      <!-- BIOLOGICAL METHODS -->
+      <div class="content-section" id="b-methods"><div class="content">
+        <div class="section-eyebrow">Methods</div>
+        <h2 class="section-title">Research Methods in <em>Biological Psychology</em></h2>
+        <p class="section-intro">Edexcel requires knowledge of correlational research, brain scanning techniques, twin studies, and Spearman's rank correlation coefficient.</p>
+        <h3 class="sub-heading">Correlational Research</h3>
+        <div class="def-box"><div class="def-label">Core Definition</div><div class="def-text">A correlation investigates the relationship between two co-variables — it measures the direction (positive/negative) and strength of association. Correlations do not establish causation — a third variable may explain the relationship.</div></div>
+        <div class="methods-grid">
+          <div class="method-card"><div class="method-title">Types of Correlation</div><div class="method-body"><strong>Positive:</strong> Both variables increase together (e.g. testosterone levels and aggression scores).<br><strong>Negative:</strong> One increases as the other decreases (e.g. serotonin levels and depression scores).<br><strong>Zero:</strong> No systematic relationship between variables.</div></div>
+          <div class="method-card"><div class="method-title">Strengths & Weaknesses</div><div class="method-body"><strong>Strengths:</strong> Ethical — no manipulation of variables; useful for variables that cannot be experimentally manipulated; identifies relationships for further experimental study.<br><strong>Weaknesses:</strong> Cannot establish causation; directionality problem; third variable problem.</div></div>
+        </div>
+        <div class="tip-box"><div class="tip-label">💡 Correlation vs Causation</div><div class="tip-text">In the exam, never say a correlation 'proves' or 'shows that X causes Y'. Always use language such as 'there is a positive association between…' or 'X is positively correlated with Y'. This distinction is assessed directly in methodology questions.</div></div>
+
+        <h3 class="sub-heading">Brain Scanning Techniques</h3>
+        <div class="card-grid">
+          <div class="card"><div class="card-label">Structural</div><div class="card-title">MRI (Magnetic Resonance Imaging)</div><div class="card-body">Uses magnetic fields to produce high-resolution images of brain structure. Non-invasive and safe. Does not measure brain activity — structural only. Used to identify tissue damage and abnormalities.</div></div>
+          <div class="card"><div class="card-label">Functional</div><div class="card-title">fMRI (Functional MRI)</div><div class="card-body">Measures blood oxygenation (BOLD response) as an indirect index of neural activity. High spatial resolution. Reveals which areas are active during tasks. Used to study memory, emotion, and language.</div></div>
+          <div class="card"><div class="card-label">Functional</div><div class="card-title">PET (Positron Emission Tomography)</div><div class="card-body">Measures glucose metabolism — a proxy for neural activity. Requires radioactive tracer injection (FDG). Lower spatial resolution than fMRI. Used by Raine et al. (1997). Invasive procedure.</div></div>
+          <div class="card"><div class="card-label">Electrical</div><div class="card-title">EEG (Electroencephalogram)</div><div class="card-body">Measures electrical activity in the brain via scalp electrodes. Excellent temporal resolution (millisecond level). Poor spatial resolution — cannot localise precisely. Used to study sleep stages and seizures.</div></div>
+        </div>
+
+        <h3 class="sub-heading">Twin Studies</h3>
+        <p class="body-text">Twin studies exploit the natural experiment of MZ twins (100% genetic overlap) vs DZ twins (~50% genetic overlap) to estimate the heritability of traits. If a trait is more concordant in MZ than DZ twins, this suggests a genetic contribution.</p>
+        <table class="spec-table"><thead><tr><th>Aspect</th><th>Explanation</th></tr></thead><tbody>
+          <tr><td><strong>Concordance rate</strong></td><td>The probability that if one twin has a trait, the other also has it. Expressed as a percentage. MZ > DZ concordance → genetic influence.</td></tr>
+          <tr><td><strong>Heritability</strong></td><td>Estimated from twin data — the proportion of variance in a trait attributable to genetic factors. Does not mean the trait is fixed; environment still matters.</td></tr>
+          <tr><td><strong>Assumption</strong></td><td>The equal environments assumption: MZ and DZ twins share equally similar environments. If violated (MZ twins treated more similarly), genetic estimates are inflated.</td></tr>
+          <tr><td><strong>Limitation</strong></td><td>MZ twins share 100% of genes but not 100% of prenatal environments. Cannot disentangle all genetic from environmental effects.</td></tr>
+        </tbody></table>
+
+        <h3 class="sub-heading">Spearman's Rank Correlation</h3>
+        <p class="body-text">Spearman's rank is a non-parametric statistical test used to measure the strength and direction of a monotonic relationship between two ordinal variables (or non-normally distributed interval data).</p>
+        <div class="methods-grid">
+          <div class="method-card"><div class="method-title">When to Use</div><div class="method-body">Use Spearman's when: (1) the hypothesis predicts a correlation/relationship, (2) data is ordinal or ranked, (3) data is not normally distributed. The result is a correlation coefficient (<em>r</em><sub>s</sub>) between −1 and +1.</div></div>
+          <div class="method-card"><div class="method-title">Interpreting Results</div><div class="method-body">Compare calculated <em>r</em><sub>s</sub> to the critical value (at appropriate significance level and N). If |calculated| ≥ |critical value| → reject H₀ (result is significant). A result of r<sub>s</sub> = 0.85 indicates a strong positive correlation.</div></div>
+        </div>
+        <div class="tip-box"><div class="tip-label">💡 Exam Tip — Spearman's in Biological Context</div><div class="tip-text">A common exam question asks you to calculate or interpret Spearman's in biological psychology — e.g. the correlation between testosterone levels and aggression scores. Always: (1) state the direction and strength of the correlation, (2) compare to the critical value, (3) state whether the result is significant, and (4) link back to the hypothesis.</div></div>
+      </div></div>
+
+      <!-- BIOLOGICAL EXAM -->
+      <div class="content-section" id="b-exam"><div class="content">
+        <div class="section-eyebrow">Exam Skills</div>
+        <h2 class="section-title">Worked Answers & <em>Examiner Tips</em></h2>
+        <p class="section-intro">Fully worked sample answers for Biological Psychology question types, annotated with AO1/AO2/AO3.</p>
+        <h3 class="sub-heading">4-Mark — Describe</h3>
+        <div class="wa-wrap">
+          <div class="wa-topbar"><span class="wa-tag">Synaptic Transmission</span><span class="wa-marks">4 marks · AO1</span></div>
+          <div class="wa-question">"Describe the process of synaptic transmission." [4 marks]</div>
+          <div class="wa-body">
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Action potential:</strong> When an action potential reaches the axon terminal (pre-synaptic neuron), it triggers the release of neurotransmitters from <em>synaptic vesicles</em> into the <em>synaptic cleft</em>.</span></div>
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Receptor binding:</strong> Neurotransmitters diffuse across the cleft and bind to specific receptor sites on the <em>post-synaptic membrane</em>. The shape of the neurotransmitter must match the receptor (lock-and-key model).</span></div>
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Effect and reuptake:</strong> If sufficient excitatory neurotransmitters bind, an EPSP is produced and a new action potential fires in the post-synaptic neuron. Neurotransmitters are then broken down by enzymes or reabsorbed via <em>reuptake</em> for reuse.</span></div>
+          </div>
+          <div class="wa-footer"><span>AO1 × 3 → 4 marks</span><span>Action potential, release, binding, effect, and reuptake all mentioned.</span></div>
+        </div>
+        <h3 class="sub-heading">8-Mark — Outline & Evaluate</h3>
+        <div class="wa-wrap">
+          <div class="wa-topbar"><span class="wa-tag">Biological Explanation of Aggression</span><span class="wa-marks">8 marks · AO1 + AO3</span></div>
+          <div class="wa-question">"Outline and evaluate one biological explanation of aggression." [8 marks]</div>
+          <div class="wa-body">
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Neural explanation:</strong> The biological approach proposes that aggression is linked to activity in specific brain structures. The <em>prefrontal cortex</em> regulates impulse control — damage or reduced activity disinhibits aggressive behaviour. The <em>amygdala</em> is involved in emotional processing; stimulation can trigger aggressive responses.</span></div>
+            <div class="wa-step"><span class="wa-ao">AO1</span><span class="wa-step-text"><strong>Supporting research:</strong> Raine et al. (1997) used PET scans to show that NGRI murderers had significantly reduced glucose metabolism in the prefrontal cortex and abnormal asymmetry in the amygdala and thalamus compared to matched controls — consistent with this neural explanation.</span></div>
+            <div class="wa-step"><span class="wa-ao ao3">AO3</span><span class="wa-step-text"><strong>Methodological strength:</strong> Raine's use of PET scanning provides objective, physiological data free from social desirability bias — strengthening the validity of the finding that brain activity differs in violent individuals.</span></div>
+            <div class="wa-step"><span class="wa-ao ao3">AO3</span><span class="wa-step-text"><strong>Limitation — causation:</strong> Raine's study was quasi-experimental with no random allocation — brain differences may be a consequence of violent lifestyle or medication, not a cause of it. This makes it impossible to conclude that neural abnormalities cause aggression.</span></div>
+            <div class="wa-step"><span class="wa-ao ao3">AO3</span><span class="wa-step-text"><strong>Alternative evidence:</strong> Brendgen et al. (2005) found that social (relational) aggression was more environmentally than genetically determined, while physical aggression showed stronger genetic influence — suggesting that biological explanations apply differently to different types of aggression and cannot account for all aggressive behaviour.</span></div>
+          </div>
+          <div class="wa-footer"><span>AO1 × 4 + AO3 × 4 = 8 marks</span><span>2 AO1 paragraphs, 3 developed AO3 points. Band 4.</span></div>
+        </div>
+        <div class="tip-box"><div class="tip-label">💡 Biological Psychology — Key Exam Themes</div><div class="tip-text">The most frequently examined themes are: (1) neural and hormonal explanations of aggression evaluated with Raine/Brendgen/McDermott, (2) circadian rhythms with reference to the SCN and exogenous zeitgebers, and (3) scanning technique evaluation questions (PET vs fMRI). Always be able to evaluate biological explanations using the key limitation: correlation ≠ causation.</div></div>
+        <div class="er-box"><div class="er-label">📋 Examiner Report — Biological Psychology Generally</div><div class="er-text">The most common error across biological psychology questions is making deterministic claims — stating that genes or brain structure 'make' people aggressive or violent. The correct position is always probabilistic and interactionist: biology creates a predisposition which interacts with environment. Students who consistently use qualified language ('may predispose', 'associated with', 'increases the likelihood of') consistently score in the higher bands.</div></div>
+      </div></div>
+    </main>
+  </div>
+</div>
+
+<script>
+function goHome(){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-home').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showSection(prefix,name){
+  // hide all sections with this prefix
+  document.querySelectorAll('[id^="'+prefix+'-"]').forEach(s=>s.classList.remove('visible'));
+  const t=document.getElementById(prefix+'-'+name);
+  if(t)t.classList.add('visible');
+  // update pill navs on current page
+  const activePage=document.querySelector('.page.active');
+  if(activePage){
+    activePage.querySelectorAll('.pill-nav').forEach(b=>{
+      b.classList.toggle('active',b.getAttribute('onclick')?.includes("'"+name+"'"));
+    });
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleStudy(header){
+  header.closest('.study-card').classList.toggle('open');
+}
+document.querySelectorAll('.prog-item').forEach(item=>{
+  item.addEventListener('click',()=>{
+    const bar=item.closest('.progress-bar');
+    bar.querySelectorAll('.prog-item').forEach(p=>{p.classList.remove('current');p.classList.add('done');});
+    item.classList.add('current');item.classList.remove('done');
+  });
+});
+</script>
+</body>
+</html>
